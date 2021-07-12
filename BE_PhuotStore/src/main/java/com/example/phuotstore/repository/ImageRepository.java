@@ -12,11 +12,6 @@ import java.util.Optional;
 
 public interface ImageRepository extends JpaRepository<Image, Integer> {
 
-    Boolean existsByImageName(String imgName);
-
-    @Query("SELECT img FROM Image img WHERE img.imgID = ?1")
-    Image findByID(int imgID);
-
     @Query("SELECT img FROM Image img WHERE img.imgID = ?1")
     Optional<Image> findImageByID(int imgID);
 
