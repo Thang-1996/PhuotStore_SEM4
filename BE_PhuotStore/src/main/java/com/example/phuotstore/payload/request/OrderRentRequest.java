@@ -14,8 +14,7 @@ public class OrderRentRequest {
 
     private String note;
 
-    @Min(value = 1, message = "please chose a status")
-    private int status;
+    private String status;
 
     @NotNull(message = "Quantity must not be null")
     private int quantity;
@@ -58,11 +57,11 @@ public class OrderRentRequest {
         this.note = note;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

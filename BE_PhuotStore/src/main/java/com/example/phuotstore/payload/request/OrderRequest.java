@@ -19,13 +19,12 @@ public class OrderRequest {
     @CreationTimestamp
     private Date updateAt;
 
-    @Min(value = 1, message = "please chose a status")
-    private int status;
+    private String status;
 
     @NotNull(message = "Quantity must not be null")
     private int quantity;
 
-    private Set<Integer> user;
+    private Integer userID;
 
     private Set<Integer> product;
 
@@ -63,20 +62,20 @@ public class OrderRequest {
         this.updateAt = updateAt;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
-    public Set<Integer> getUser() {
-        return user;
+    public Integer getUserID() {
+        return userID;
     }
 
-    public void setUser(Set<Integer> user) {
-        this.user = user;
+    public void setUserID(Integer userID) {
+        this.userID = userID;
     }
 
     public Set<Integer> getProduct() {

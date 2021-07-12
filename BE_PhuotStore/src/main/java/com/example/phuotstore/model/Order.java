@@ -28,14 +28,18 @@ public class Order {
     private Date createAt;
     @CreationTimestamp
     private Date updateAt;
+    @CreationTimestamp
+    private Date endAt;
 
-    @Min(value = 1, message = "please chose a status")
-    private int status;
+    @NotNull
+    private String status;
 
     @NotNull(message = "Quantity must not be null")
     private int quantity;
 
     private double totalPrice;
+
+    private String orderType;
 
     @ManyToOne
     @NotNull
@@ -58,13 +62,46 @@ public class Order {
     public Order() {
     }
 
-    public Order(@NotNull String orderName, String note, Date createAt, Date updateAt, @Min(value = 1, message = "please chose a status") int status, @NotNull(message = "Quantity must not be null") int quantity) {
+    public Order(int orderID, @NotNull String orderName, String note, Date createAt, Date updateAt, Date endAt, String status, @NotNull(message = "Quantity must not be null") int quantity, double totalPrice, String orderType, @NotNull User user, Set<Product> products, Set<Combo> combos) {
+        this.orderID = orderID;
+        this.orderName = orderName;
+        this.note = note;
+        this.createAt = createAt;
+        this.updateAt = updateAt;
+        this.endAt = endAt;
+        this.status = status;
+        this.quantity = quantity;
+        this.totalPrice = totalPrice;
+        this.orderType = orderType;
+        this.user = user;
+        this.products = products;
+        this.combos = combos;
+    }
+
+    public Order(String orderName, String note, Date createAt, Date updateAt, String status, int quantity) {
         this.orderName = orderName;
         this.note = note;
         this.createAt = createAt;
         this.updateAt = updateAt;
         this.status = status;
         this.quantity = quantity;
+    }
+
+
+    public Date getEndAt() {
+        return endAt;
+    }
+
+    public void setEndAt(Date endAt) {
+        this.endAt = endAt;
+    }
+
+    public String getOrderType() {
+        return orderType;
+    }
+
+    public void setOrderType(String orderType) {
+        this.orderType = orderType;
     }
 
     public int getOrderID() {
@@ -107,11 +144,11 @@ public class Order {
         this.updateAt = updateAt;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

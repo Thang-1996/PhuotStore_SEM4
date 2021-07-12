@@ -24,15 +24,13 @@ public class Product {
     @NotNull
     private String productCode;
 
-    @NotNull
-    private String productIMG;
 
     private String productDesc;
 
     private int discount;
 
-    @Min(value = 1, message = "please chose a status")
-    private int status;
+    @NotNull
+    private String status;
 
     @NotNull
     private int qty;
@@ -44,6 +42,8 @@ public class Product {
     private Date createAt;
     @CreationTimestamp
     private Date updateAt;
+
+    private int rating;
 
     @ManyToOne
     @NotNull
@@ -57,14 +57,19 @@ public class Product {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Brand brand;
 
+    @ManyToOne
+    @NotNull
+    @JoinColumn(name = "commentID", referencedColumnName = "commentID")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private Comment comment;
+
     public Product() {
     }
 
-    public Product(int productID, @NotNull String productName, @NotNull String productCode, @NotNull String productIMG, String productDesc, int discount, @Min(value = 1, message = "please chose a status") int status, @NotNull int qty, @NotNull double price, Date createAt, Date updateAt, @NotNull Category category, @NotNull Brand brand) {
+    public Product(int productID, @NotNull String productName, @NotNull String productCode, String productDesc, int discount, String status, @NotNull int qty, @NotNull double price, Date createAt, Date updateAt, @NotNull Category category, @NotNull Brand brand) {
         this.productID = productID;
         this.productName = productName;
         this.productCode = productCode;
-        this.productIMG = productIMG;
         this.productDesc = productDesc;
         this.discount = discount;
         this.status = status;
@@ -118,14 +123,6 @@ public class Product {
         this.productCode = productCode;
     }
 
-    public String getProductIMG() {
-        return productIMG;
-    }
-
-    public void setProductIMG(String productIMG) {
-        this.productIMG = productIMG;
-    }
-
     public String getProductDesc() {
         return productDesc;
     }
@@ -134,11 +131,11 @@ public class Product {
         this.productDesc = productDesc;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
@@ -180,5 +177,21 @@ public class Product {
 
     public void setDiscount(int discount) {
         this.discount = discount;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
+    public Comment getComment() {
+        return comment;
+    }
+
+    public void setComment(Comment comment) {
+        this.comment = comment;
     }
 }

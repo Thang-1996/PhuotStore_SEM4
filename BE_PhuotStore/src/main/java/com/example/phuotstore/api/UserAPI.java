@@ -4,6 +4,7 @@ import com.example.phuotstore.model.*;
 import com.example.phuotstore.payload.request.SignupRequest;
 import com.example.phuotstore.payload.request.UserRequest;
 import com.example.phuotstore.payload.response.MessageResponse;
+import com.example.phuotstore.repository.CommentRepository;
 import com.example.phuotstore.repository.RoleRepository;
 import com.example.phuotstore.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ import javax.validation.Valid;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
-
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping(path = "api/v1/users")
 public class UserAPI {
@@ -34,6 +35,9 @@ public class UserAPI {
 
     @Autowired
     private RoleRepository roleRepository;
+
+    @Autowired
+    private CommentRepository commentRepository;
 
     @GetMapping //read data
     public ResponseEntity<Page<User>> getAllUsers(Pageable pageable) {

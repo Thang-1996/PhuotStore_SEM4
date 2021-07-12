@@ -29,9 +29,8 @@ public class Combo {
 
     @NotNull(message = "Price must not be null")
     private double totalPrice;
-
-    @Min(value = 1,message = "Please chose a status")
-    private int status;
+    @NotNull
+    private String status;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(	name = "comboDetail",
@@ -42,7 +41,7 @@ public class Combo {
     public Combo() {
     }
 
-    public Combo(@NotNull String comboName, @NotNull String comboCode, @NotNull String comboDesc, int discount, @NotNull(message = "Quantity must not be null") int quantity, @Min(value = 1, message = "Please chose a status") int status) {
+    public Combo(String comboName, String comboCode, String comboDesc, int discount, int quantity, String status) {
         this.comboName = comboName;
         this.comboCode = comboCode;
         this.comboDesc = comboDesc;
@@ -91,11 +90,11 @@ public class Combo {
         this.discount = discount;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
@@ -114,6 +113,7 @@ public class Combo {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
 
     public double getTotalPrice() {
         return totalPrice;

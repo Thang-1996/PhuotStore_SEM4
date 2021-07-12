@@ -24,14 +24,13 @@ public class Category {
     @NotNull
     private String categoryDesc;
 
-
-    @Min(value = 1,message = "Please chose a status")
-    private int status;
+    @NotNull
+    private String status;
 
     public Category() {
     }
 
-    public Category(int categoryID, @NotNull String categoryName, @NotNull String categoryCode, @NotNull String categoryDesc, @Min(value = 1, message = "Please chose a status") int status) {
+    public Category(int categoryID, @NotNull String categoryName, @NotNull String categoryCode, @NotNull String categoryDesc, String status) {
         this.categoryID = categoryID;
         this.categoryName = categoryName;
         this.categoryCode = categoryCode;
@@ -71,11 +70,11 @@ public class Category {
         this.categoryDesc = categoryDesc;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 }

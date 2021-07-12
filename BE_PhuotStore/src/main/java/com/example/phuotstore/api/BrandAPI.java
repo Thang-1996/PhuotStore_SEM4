@@ -15,6 +15,7 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.util.Optional;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping(path = "api/v1/brands")
 public class BrandAPI {

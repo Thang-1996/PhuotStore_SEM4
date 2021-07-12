@@ -1,7 +1,5 @@
 package com.example.phuotstore.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.util.HashSet;
@@ -9,7 +7,7 @@ import java.util.Set;
 
 
 @Entity
-@Table(	name = "\"user\"",
+@Table(name = "\"user\"",
     uniqueConstraints = {
         @UniqueConstraint(columnNames = "username"),
         @UniqueConstraint(columnNames = "email")
@@ -37,7 +35,7 @@ public class User {
     private String address;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(	name = "userRole",
+    @JoinTable(name = "userRole",
         joinColumns = @JoinColumn(name = "userID"),
         inverseJoinColumns = @JoinColumn(name = "roleID"))
     private Set<Role> roles = new HashSet<>();
@@ -116,3 +114,4 @@ public class User {
         this.avatar = avatar;
     }
 }
+

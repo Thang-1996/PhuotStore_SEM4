@@ -37,6 +37,7 @@ public class AuthController {
     private static final String ROLE_ADMIN = "ROLE_ADMIN";
     private static final String ROLE_MANAGER = "ROLE_MANAGER";
     private static final String ROLE_USER = "ROLE_USER";
+
     @Autowired
     AuthenticationManager authenticationManager;
 

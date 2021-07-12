@@ -20,8 +20,7 @@ public class ComboRequest {
     @NotNull(message = "Quantity must not be null")
     private int quantity;
 
-    @Min(value = 1,message = "Please chose a status")
-    private int status;
+    private String status;
 
     private Set<Integer> product;
 
@@ -57,11 +56,11 @@ public class ComboRequest {
         this.discount = discount;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

@@ -20,7 +20,7 @@ import java.net.URI;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
-
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping(path = "api/v1/combos")
 public class ComboAPI {
@@ -103,7 +103,7 @@ public class ComboAPI {
         }
 
 
-        Combo combo = new Combo(comboRequest.getComboName(), comboRequest.getComboCode(), comboRequest.getComboDesc(), comboRequest.getDiscount(), comboRequest.getStatus(), comboRequest.getQuantity());
+        Combo combo = new Combo(comboRequest.getComboName(), comboRequest.getComboCode(), comboRequest.getComboDesc(), comboRequest.getDiscount(),comboRequest.getQuantity(), comboRequest.getStatus());
 
         Set<Integer> productID = comboRequest.getProduct();
         Set<Product> products = new HashSet<>();

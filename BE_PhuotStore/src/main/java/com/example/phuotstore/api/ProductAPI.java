@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -20,7 +19,7 @@ import java.net.URI;
 import java.util.Date;
 import java.util.Optional;
 
-
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping(path = "api/v1/products")
 public class ProductAPI {
@@ -118,18 +117,6 @@ public class ProductAPI {
 
     @PutMapping("/update/{id}")
     public ResponseEntity<?> updateProduct(@PathVariable int id, @Valid @RequestBody Product product) {
-
-//        if (productRepository.existsByProductName(product.getProductName())) {
-//            return ResponseEntity
-//                .badRequest()
-//                .body(new MessageResponse("Error: Product Name is already!"));
-//        }
-//
-//        if (productRepository.existsByProductCode(product.getProductCode())) {
-//            return ResponseEntity
-//                .badRequest()
-//                .body(new MessageResponse("Error: Product Code is already!"));
-//        }
 
         Optional<Brand> optionalBrand = brandRepository.findBrandByID(product.getBrand().getBrandID());
         if (!optionalBrand.isPresent()) {

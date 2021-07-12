@@ -25,6 +25,9 @@ public class OrderRent {
     private Date createAt;
     @CreationTimestamp
     private Date updateAt;
+    @CreationTimestamp
+    private Date endAt;
+
 
     @CreationTimestamp
     private Date rentalStart;
@@ -32,8 +35,9 @@ public class OrderRent {
     @CreationTimestamp
     private Date rentalEnd;
 
-    @Min(value = 1, message = "please chose a status")
-    private int status;
+
+    @NotNull
+    private String status;
 
     @NotNull(message = "Quantity must not be null")
     private int quantity;
@@ -41,8 +45,6 @@ public class OrderRent {
     private double totalPrice;
 
     private double rental;
-
-
 
     @ManyToOne
     @NotNull
@@ -65,7 +67,7 @@ public class OrderRent {
     public OrderRent() {
     }
 
-    public OrderRent(@NotNull String orderRentName, String note, Date createAt, Date updateAt, Date rentalStart, Date rentalEnd, @Min(value = 1, message = "please chose a status") int status, @NotNull(message = "Quantity must not be null") int quantity) {
+    public OrderRent(@NotNull String orderRentName, String note, Date createAt, Date updateAt, Date rentalStart, Date rentalEnd, String status, @NotNull(message = "Quantity must not be null") int quantity) {
         this.orderRentName = orderRentName;
         this.note = note;
         this.createAt = createAt;
@@ -132,11 +134,11 @@ public class OrderRent {
         this.rentalEnd = rentalEnd;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

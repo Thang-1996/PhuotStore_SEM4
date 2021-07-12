@@ -23,14 +23,13 @@ public class Brand {
 
     @NotNull
     private String brandDesc;
-
-    @Min(value = 1,message = "Please chose a status")
-    private int status;
+    @NotNull
+    private String status;
 
     public Brand() {
     }
 
-    public Brand(int brandID, @NotNull String brandName, @NotNull String brandCode, @NotNull String brandDesc, @Min(value = 1, message = "Please chose a status") int status) {
+    public Brand(int brandID, @NotNull String brandName, @NotNull String brandCode, @NotNull String brandDesc, String status) {
         this.brandID = brandID;
         this.brandName = brandName;
         this.brandCode = brandCode;
@@ -70,11 +69,11 @@ public class Brand {
         this.brandDesc = brandDesc;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 }

@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.*;
-
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping(path = "api/v1/orders")
 public class OrderAPI {
@@ -83,7 +83,7 @@ public class OrderAPI {
 
         Set<Integer> productID = orderRequest.getProduct();
         Set<Integer> comboID = orderRequest.getCombo();
-        Set<Integer> userID = orderRequest.getUser();
+        Integer userID = orderRequest.getUserID();
 
         Set<Product> products = new HashSet<>();
         Set<Combo> combos = new HashSet<>();
