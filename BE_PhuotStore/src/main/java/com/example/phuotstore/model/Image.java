@@ -27,7 +27,6 @@ public class Image {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Product product;
 
-
     public Image() {
     }
 

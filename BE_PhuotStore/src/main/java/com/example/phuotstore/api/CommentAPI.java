@@ -1,7 +1,7 @@
 package com.example.phuotstore.api;
 
-import com.example.phuotstore.model.Comment;
-import com.example.phuotstore.model.User;
+import com.example.phuotstore.model.*;
+import com.example.phuotstore.payload.response.MessageResponse;
 import com.example.phuotstore.repository.CommentRepository;
 import com.example.phuotstore.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +9,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
+import java.net.URI;
+import java.util.Date;
 import java.util.Optional;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -25,6 +29,15 @@ public class CommentAPI {
     @GetMapping //read data
     public ResponseEntity<Page<Comment>> getAllComments(Pageable pageable) {
         return ResponseEntity.ok(commentRepository.getAllComments(pageable));
+    }
+
+    @GetMapping("/user/{id}")
+    public ResponseEntity<Page<Comment>> getCommentsByUserID(@PathVariable int id, Pageable pageable) {
+        Optional<User> optionalUser = userRepository.findUserByID(id);
+        if (!optionalUser.isPresent()) {
+            return ResponseEntity.unprocessableEntity().build();
+        }
+        return ResponseEntity.ok(commentRepository.findCommentsByUserID(id, pageable));
     }
 
     @GetMapping("/{id}")
@@ -45,5 +58,4 @@ public class CommentAPI {
     public ResponseEntity<Page<Comment>> getCommentsByStatusShow( Pageable pageable) {
         return ResponseEntity.ok(commentRepository.findPaginateCommentsStatusShow(pageable));
     }
-
 }

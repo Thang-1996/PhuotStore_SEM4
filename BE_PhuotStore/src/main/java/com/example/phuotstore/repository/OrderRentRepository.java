@@ -21,18 +21,18 @@ public interface OrderRentRepository extends JpaRepository<OrderRent, Integer> {
     @Query("SELECT od FROM OrderRent od WHERE od.user.userID = ?1")
     Page<OrderRent> getOrderRentsByUserID(int userID, Pageable pageable);
 
-    @Query("SELECT od FROM OrderRent od WHERE od.status = 1 ORDER BY od.createAt ASC ")
+    @Query("SELECT od FROM OrderRent od WHERE od.status = 'WAITING' ORDER BY od.createAt ASC ")
     Page<OrderRent> findPaginateOrderRentsWaiting(Pageable pageable);
 
-    @Query("SELECT od FROM OrderRent od WHERE od.status = 2 ORDER BY od.updateAt ASC ")
+    @Query("SELECT od FROM OrderRent od WHERE od.status = 'COMFIRM' ORDER BY od.createAt ASC ")
     Page<OrderRent> findPaginateOrderRentsConfirmed(Pageable pageable);
 
-    @Query("SELECT od FROM OrderRent od WHERE od.status = 3 ORDER BY od.updateAt ASC ")
+    @Query("SELECT od FROM OrderRent od WHERE od.status = 'SHIPPING' ORDER BY od.updateAt ASC ")
     Page<OrderRent> findPaginateOrderRentsShipping(Pageable pageable);
 
-    @Query("SELECT od FROM OrderRent od WHERE od.status = 4 ORDER BY od.updateAt ASC ")
+    @Query("SELECT od FROM OrderRent od WHERE od.status = 'COMPLETE' ORDER BY od.updateAt ASC ")
     Page<OrderRent> findPaginateOrderRentsComplete(Pageable pageable);
 
-    @Query("SELECT od FROM OrderRent od WHERE od.status = 5 ORDER BY od.updateAt ASC ")
+    @Query("SELECT od FROM OrderRent od WHERE od.status = 'CANCEL' ORDER BY od.updateAt ASC ")
     Page<OrderRent> findPaginateOrderRentsCancelled(Pageable pageable);
 }
