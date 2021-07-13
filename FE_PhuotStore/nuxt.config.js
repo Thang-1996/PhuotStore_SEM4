@@ -15,7 +15,7 @@ export default {
   css: ['ant-design-vue/dist/antd.css', '@/assets/css/main.scss'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['@/plugins/antd-ui','~/plugins/api'],
+  plugins: ['@/plugins/antd-ui', '~/plugins/api'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -39,10 +39,10 @@ export default {
     '@nuxtjs/auth-next',
   ],
   env: {
-    baseUrl: 'http://localhost:8080'
+    baseUrl: 'http://localhost:8080',
   },
   router: {
-    middleware: 'authenticate'
+    middleware: 'authenticate',
   },
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},
