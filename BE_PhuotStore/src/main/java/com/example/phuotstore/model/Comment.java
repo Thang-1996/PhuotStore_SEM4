@@ -30,13 +30,11 @@ public class Comment {
     @ManyToOne
     @NotNull
     @JoinColumn(name = "productID", referencedColumnName = "productID")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Product product;
 
     @ManyToOne
     @NotNull
     @JoinColumn(name = "userID", referencedColumnName = "userID")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private User user;
 
     public Comment() {

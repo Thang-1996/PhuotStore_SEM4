@@ -18,13 +18,11 @@ public class Inventory {
     @ManyToOne
     @NotNull
     @JoinColumn(name = "productID", referencedColumnName = "productID")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Product product;
 
     @ManyToOne
     @NotNull
     @JoinColumn(name = "shopID", referencedColumnName = "shopID")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Shop shop;
 
     public Inventory() {

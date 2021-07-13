@@ -49,7 +49,6 @@ public class OrderRent {
     @ManyToOne
     @NotNull
     @JoinColumn(name = "userID", referencedColumnName = "userID")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private User user;
 
     @ManyToMany(fetch = FetchType.LAZY)

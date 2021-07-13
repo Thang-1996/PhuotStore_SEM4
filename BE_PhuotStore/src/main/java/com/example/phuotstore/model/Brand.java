@@ -1,12 +1,11 @@
 package com.example.phuotstore.model;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Brand {
@@ -29,7 +28,7 @@ public class Brand {
     public Brand() {
     }
 
-    public Brand(int brandID, @NotNull String brandName, @NotNull String brandCode, @NotNull String brandDesc, String status) {
+    public Brand(int brandID, @NotNull String brandName, @NotNull String brandCode, @NotNull String brandDesc, @NotNull String status) {
         this.brandID = brandID;
         this.brandName = brandName;
         this.brandCode = brandCode;

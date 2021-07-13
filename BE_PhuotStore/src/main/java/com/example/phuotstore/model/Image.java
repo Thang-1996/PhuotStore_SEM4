@@ -24,7 +24,6 @@ public class Image {
     @ManyToOne
     @NotNull
     @JoinColumn(name = "productID", referencedColumnName = "productID")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Product product;
 
     public Image() {

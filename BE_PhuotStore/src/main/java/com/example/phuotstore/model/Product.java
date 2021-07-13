@@ -48,25 +48,21 @@ public class Product {
     @ManyToOne
     @NotNull
     @JoinColumn(name = "categoryID", referencedColumnName = "categoryID")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Category category;
 
     @ManyToOne
     @NotNull
     @JoinColumn(name = "brandID", referencedColumnName = "brandID")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Brand brand;
 
-    @ManyToOne
-    @NotNull
-    @JoinColumn(name = "commentID", referencedColumnName = "commentID")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private Comment comment;
+//    @ManyToOne
+//    @JoinColumn(name = "commentID", referencedColumnName = "commentID")
+//    private Comment comment;
 
     public Product() {
     }
 
-    public Product(int productID, @NotNull String productName, @NotNull String productCode, String productDesc, int discount, String status, @NotNull int qty, @NotNull double price, Date createAt, Date updateAt, @NotNull Category category, @NotNull Brand brand) {
+    public Product(int productID, @NotNull String productName, @NotNull String productCode, String productDesc, int discount, @NotNull String status, @NotNull int qty, @NotNull double price, Date createAt, Date updateAt, int rating, @NotNull Category category, @NotNull Brand brand, Comment comment) {
         this.productID = productID;
         this.productName = productName;
         this.productCode = productCode;
@@ -77,10 +73,11 @@ public class Product {
         this.price = price;
         this.createAt = createAt;
         this.updateAt = updateAt;
+        this.rating = rating;
         this.category = category;
         this.brand = brand;
+//        this.comment = comment;
     }
-
 
     public Date getCreateAt() {
         return createAt;
@@ -187,11 +184,11 @@ public class Product {
         this.rating = rating;
     }
 
-    public Comment getComment() {
-        return comment;
-    }
-
-    public void setComment(Comment comment) {
-        this.comment = comment;
-    }
+//    public Comment getComment() {
+//        return comment;
+//    }
+//
+//    public void setComment(Comment comment) {
+//        this.comment = comment;
+//    }
 }
