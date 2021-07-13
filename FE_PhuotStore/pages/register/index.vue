@@ -1,7 +1,6 @@
 <template>
   <a-spin :spinning="loading">
     <div class="login">
-
       <a-form
         id="components-form-demo-normal-login"
         :form="form"
@@ -11,13 +10,13 @@
         <a-form-item>
           <a-input
             v-decorator="[
-            'username',
-            {
-              rules: [
-                { required: true, message: 'Please input your username!' },
-              ],
-            },
-          ]"
+              'username',
+              {
+                rules: [
+                  { required: true, message: 'Please input your username!' },
+                ],
+              },
+            ]"
             placeholder="Username"
           >
             <a-icon
@@ -30,13 +29,13 @@
         <a-form-item>
           <a-input
             v-decorator="[
-            'email',
-            {
-              rules: [
-                { required: true, message: 'Please enter your email!' },
-              ],
-            },
-          ]"
+              'email',
+              {
+                rules: [
+                  { required: true, message: 'Please enter your email!' },
+                ],
+              },
+            ]"
             placeholder="Email Address"
           >
             <a-icon
@@ -49,13 +48,13 @@
         <a-form-item>
           <a-input
             v-decorator="[
-            'password',
-            {
-              rules: [
-                { required: true, message: 'Please input your Password!' },
-              ],
-            },
-          ]"
+              'password',
+              {
+                rules: [
+                  { required: true, message: 'Please input your Password!' },
+                ],
+              },
+            ]"
             type="password"
             placeholder="Password"
           >
@@ -69,12 +68,12 @@
         <a-form-item>
           <a-checkbox
             v-decorator="[
-            'remember',
-            {
-              valuePropName: 'checked',
-              initialValue: false,
-            },
-          ]"
+              'remember',
+              {
+                valuePropName: 'checked',
+                initialValue: false,
+              },
+            ]"
           >
             Remember me
           </a-checkbox>
@@ -86,18 +85,15 @@
           <nuxt-link to="/login">Already have account! Login</nuxt-link>
         </a-form-item>
       </a-form>
-
-
     </div>
   </a-spin>
 </template>
 
 <script>
 export default {
-  layout: 'login',
-  data(){
-    return{
-      loading : false,
+  data() {
+    return {
+      loading: false,
     }
   },
   beforeCreate() {
@@ -109,25 +105,25 @@ export default {
       this.form.validateFields((err, values) => {
         if (!err) {
           this.register({
-            username : values.username,
-            email : values.email,
-            password : values.password,
-            role : ['user']
+            username: values.username,
+            email: values.email,
+            password: values.password,
+            role: ['user'],
           })
         }
       })
     },
-    async register(user){
+    async register(user) {
       this.loading = true
       const result = await this.$api.register(user)
       this.loading = false
-      if(result.message){
+      if (result.message) {
         await this.$router.push('/login')
-        this.$message.success(`${result.message} Please Login!`);
-      }else{
-        this.$message.warning('Have some error!');
+        this.$message.success(`${result.message} Please Login!`)
+      } else {
+        this.$message.warning('Have some error!')
       }
-    }
+    },
   },
 }
 </script>

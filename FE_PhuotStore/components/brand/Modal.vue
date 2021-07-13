@@ -68,7 +68,7 @@ export default {
         this.visible = true
         const result = await this.$api.getBrand(id, {
           headers: {
-            Authorization: this.$auth.$storage.getUniversal('token'),
+            Authorization: this.$auth.$storage.getUniversal('token').token,
           },
         })
         this.brandID = result.brandID
@@ -90,17 +90,23 @@ export default {
         if (this.brandID !== '') {
           await this.$api.updateBrand(this.brandID, this.brand, {
             headers: {
-              Authorization: this.$auth.$storage.getUniversal('token'),
+              Authorization: this.$auth.$storage.getUniversal('token').token,
             },
           })
           this.$message.success(`Update brand Successfully!`)
         } else {
           await this.$api.addBrand(this.brand, {
             headers: {
-              Authorization: this.$auth.$storage.getUniversal('token'),
+              Authorization: this.$auth.$storage.getUniversal('token').token,
             },
           })
           this.$message.success(`Add brand Successfully!`)
+          this.brand = {
+            brandName: '',
+            brandCode: '',
+            brandDesc: '',
+            status: '1',
+          }
         }
         this.$emit('refreshBrand')
       } catch (e) {

@@ -20,8 +20,10 @@
     "@nuxtjs/auth-next": "5.0.0-1624817847.21691f1",
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/pwa": "^3.3.5",
+    "@nuxtjs/router": "^1.6.1",
     "ant-design-vue": "^1.7.6",
     "core-js": "^3.15.1",
+    "k-domains": "^1.2.5",
     "nuxt": "^2.15.7"
   },
   "devDependencies": {
