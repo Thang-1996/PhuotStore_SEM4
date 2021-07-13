@@ -2,10 +2,7 @@ package com.example.phuotstore.model;
 
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 public class Brand {
@@ -14,22 +11,22 @@ public class Brand {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int brandID;
 
-    @NotNull
+    @NotNull(message = "Brand Name must not be null")
     private String brandName;
 
-    @NotNull
+    @NotNull(message = "Brand Code must not be null")
     private String brandCode;
 
-    @NotNull
+    @NotNull(message = "Brand Description must not be null")
     private String brandDesc;
-    @NotNull
-    private String status;
 
+    @NotNull(message = "Status must not be null")
+    private String status;
 
     public Brand() {
     }
 
-    public Brand(int brandID, @NotNull String brandName, @NotNull String brandCode, @NotNull String brandDesc, @NotNull String status) {
+    public Brand(int brandID, String brandName, String brandCode, String brandDesc, String status) {
         this.brandID = brandID;
         this.brandName = brandName;
         this.brandCode = brandCode;

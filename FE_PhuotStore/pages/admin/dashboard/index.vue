@@ -1,10 +1,8 @@
 <template>
-  <Nuxt />
+  <h1>Dashboard</h1>
 </template>
-
 <script>
 export default {
-  name: 'login.vue',
-  middleware: 'isLogin',
+  layout: 'admin',
 }
 </script>

@@ -1,7 +1,6 @@
 package com.example.phuotstore.api;
 
 import com.example.phuotstore.model.*;
-import com.example.phuotstore.payload.response.MessageResponse;
 import com.example.phuotstore.repository.CommentRepository;
 import com.example.phuotstore.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,11 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.validation.Valid;
-import java.net.URI;
-import java.util.Date;
 import java.util.Optional;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -49,15 +44,13 @@ public class CommentAPI {
         return ResponseEntity.ok(optionalComment.get());
     }
 
-    @GetMapping("/hidden")
-    public ResponseEntity<Page<Comment>> getCommentsByStatusHidden(Pageable pageable) {
-        return ResponseEntity.ok(commentRepository.findPaginateCommentsStatusHidden(pageable));
-    }
-
-    @GetMapping("/show")
-    public ResponseEntity<Page<Comment>> getCommentsByStatusShow(Pageable pageable) {
-        return ResponseEntity.ok(commentRepository.findPaginateCommentsStatusShow(pageable));
-    }
-
-
+//    @GetMapping("/hidden")
+//    public ResponseEntity<Page<Comment>> getCommentsByStatusHidden(Pageable pageable) {
+//        return ResponseEntity.ok(commentRepository.findPaginateCommentsStatusHidden(pageable));
+//    }
+//
+//    @GetMapping("/show")
+//    public ResponseEntity<Page<Comment>> getCommentsByStatusShow(Pageable pageable) {
+//        return ResponseEntity.ok(commentRepository.findPaginateCommentsStatusShow(pageable));
+//    }
 }

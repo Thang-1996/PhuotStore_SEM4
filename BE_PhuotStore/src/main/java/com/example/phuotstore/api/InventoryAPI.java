@@ -52,7 +52,6 @@ public class InventoryAPI {
         return ResponseEntity.ok(inventoryRepository.findInventoriesByShopID(id, pageable));
     }
 
-
     @PostMapping("/add")
     public ResponseEntity<?> createInventory(@Valid @RequestBody Inventory inventory) {
 

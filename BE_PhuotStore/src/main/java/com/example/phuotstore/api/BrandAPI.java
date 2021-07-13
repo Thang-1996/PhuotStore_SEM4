@@ -37,15 +37,15 @@ public class BrandAPI {
         return ResponseEntity.ok(optionalBrand.get());
     }
 
-    @GetMapping("/hidden")
-    public ResponseEntity<Page<Brand>> getBrandsByStatusHidden(Pageable pageable) {
-        return ResponseEntity.ok(brandRepository.findPaginateBrandsStatusHidden(pageable));
-    }
-
-    @GetMapping("/show")
-    public ResponseEntity<Page<Brand>> getBrandsByStatusShow(Pageable pageable) {
-        return ResponseEntity.ok(brandRepository.findPaginateBrandsStatusShow(pageable));
-    }
+//    @GetMapping("/hidden")
+//    public ResponseEntity<Page<Brand>> getBrandsByStatusHidden(Pageable pageable) {
+//        return ResponseEntity.ok(brandRepository.findPaginateBrandsStatusHidden(pageable));
+//    }
+//
+//    @GetMapping("/show")
+//    public ResponseEntity<Page<Brand>> getBrandsByStatusShow(Pageable pageable) {
+//        return ResponseEntity.ok(brandRepository.findPaginateBrandsStatusShow(pageable));
+//    }
 
     @PostMapping("/add")
     public ResponseEntity<?> createBrand(@Valid @RequestBody Brand brand) {

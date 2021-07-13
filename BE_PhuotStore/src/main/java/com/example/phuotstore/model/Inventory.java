@@ -12,23 +12,21 @@ public class Inventory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int inventoryID;
 
-    @NotNull
+    @NotNull(message = "Quantity must not be null")
     private int qtyOnHand;
 
     @ManyToOne
-    @NotNull
     @JoinColumn(name = "productID", referencedColumnName = "productID")
     private Product product;
 
     @ManyToOne
-    @NotNull
     @JoinColumn(name = "shopID", referencedColumnName = "shopID")
     private Shop shop;
 
     public Inventory() {
     }
 
-    public Inventory(int inventoryID, @NotNull int qtyOnHand, @NotNull Product product, @NotNull Shop shop) {
+    public Inventory(int inventoryID,  int qtyOnHand, Product product, Shop shop) {
         this.inventoryID = inventoryID;
         this.qtyOnHand = qtyOnHand;
         this.product = product;

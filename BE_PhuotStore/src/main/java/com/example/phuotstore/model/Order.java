@@ -19,7 +19,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int orderID;
 
-    @NotNull
+    @NotNull(message = "Order Name must not be null")
     private String orderName;
 
     private String note;
@@ -30,32 +30,25 @@ public class Order {
     @CreationTimestamp
     private Date updateAt;
 
-    @CreationTimestamp
-    private Date endAt;
-
-    @NotNull
+    @NotNull(message = "Status must not be null")
     private String status;
 
-    @NotNull(message = "Quantity must not be null")
-    private int quantity;
+    private int totalQuantity;
 
     private double totalPrice;
 
-    private String orderType;
-
     @ManyToOne
-    @NotNull
     @JoinColumn(name = "userID", referencedColumnName = "userID")
     private User user;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(	name = "orderDetailProduct",
+    @JoinTable(name = "orderDetailProduct",
         joinColumns = @JoinColumn(name = "orderID"),
         inverseJoinColumns = @JoinColumn(name = "productID"))
     private Set<Product> products = new HashSet<>();
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(	name = "orderDetailCombo",
+    @JoinTable(name = "orderDetailCombo",
         joinColumns = @JoinColumn(name = "orderID"),
         inverseJoinColumns = @JoinColumn(name = "comboID"))
     private Set<Combo> combos = new HashSet<>();
@@ -63,46 +56,14 @@ public class Order {
     public Order() {
     }
 
-    public Order(int orderID, @NotNull String orderName, String note, Date createAt, Date updateAt, Date endAt, String status, @NotNull(message = "Quantity must not be null") int quantity, double totalPrice, String orderType, @NotNull User user, Set<Product> products, Set<Combo> combos) {
-        this.orderID = orderID;
+    public Order(String orderName, String note, Date createAt, Date updateAt, String status, int totalQuantity, double totalPrice) {
         this.orderName = orderName;
         this.note = note;
         this.createAt = createAt;
         this.updateAt = updateAt;
-        this.endAt = endAt;
         this.status = status;
-        this.quantity = quantity;
+        this.totalQuantity = totalQuantity;
         this.totalPrice = totalPrice;
-        this.orderType = orderType;
-        this.user = user;
-        this.products = products;
-        this.combos = combos;
-    }
-
-    public Order(String orderName, String note, Date createAt, Date updateAt, String status, int quantity) {
-        this.orderName = orderName;
-        this.note = note;
-        this.createAt = createAt;
-        this.updateAt = updateAt;
-        this.status = status;
-        this.quantity = quantity;
-    }
-
-
-    public Date getEndAt() {
-        return endAt;
-    }
-
-    public void setEndAt(Date endAt) {
-        this.endAt = endAt;
-    }
-
-    public String getOrderType() {
-        return orderType;
-    }
-
-    public void setOrderType(String orderType) {
-        this.orderType = orderType;
     }
 
     public int getOrderID() {
@@ -178,11 +139,11 @@ public class Order {
     }
 
     public int getQuantity() {
-        return quantity;
+        return totalQuantity;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setQuantity(int totalQuantity) {
+        this.totalQuantity = totalQuantity;
     }
 
     public double getTotalPrice() {

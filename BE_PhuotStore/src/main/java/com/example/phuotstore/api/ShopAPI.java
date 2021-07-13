@@ -37,15 +37,15 @@ public class ShopAPI {
         return ResponseEntity.ok(optionalShop.get());
     }
 
-    @GetMapping("/hidden")
-    public ResponseEntity<Page<Shop>> getShopsByStatusHidden(Pageable pageable) {
-        return ResponseEntity.ok(shopRepository.findPaginateShopsStatusHidden(pageable));
-    }
-
-    @GetMapping("/show")
-    public ResponseEntity<Page<Shop>> getShopsByStatusShow(Pageable pageable) {
-        return ResponseEntity.ok(shopRepository.findPaginateShopsStatusShow(pageable));
-    }
+//    @GetMapping("/hidden")
+//    public ResponseEntity<Page<Shop>> getShopsByStatusHidden(Pageable pageable) {
+//        return ResponseEntity.ok(shopRepository.findPaginateShopsStatusHidden(pageable));
+//    }
+//
+//    @GetMapping("/show")
+//    public ResponseEntity<Page<Shop>> getShopsByStatusShow(Pageable pageable) {
+//        return ResponseEntity.ok(shopRepository.findPaginateShopsStatusShow(pageable));
+//    }
 
     @PostMapping("/add")
     public ResponseEntity<?> createShop(@Valid @RequestBody Shop shop) {

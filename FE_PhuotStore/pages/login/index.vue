@@ -1,6 +1,6 @@
 <template>
   <a-spin :spinning="loading">
-  <div class="login">
+    <div class="login">
       <a-form
         id="components-form-demo-normal-login"
         :form="form"
@@ -10,16 +10,16 @@
         <a-form-item>
           <a-input
             v-decorator="[
-            'username',
-            {
-              rules: [
-                { required: true, message: 'Please input your username!' },
-              ],
-            },
-            {
-              initialValue: '',
-            },
-          ]"
+              'username',
+              {
+                rules: [
+                  { required: true, message: 'Please input your username!' },
+                ],
+              },
+              {
+                initialValue: '',
+              },
+            ]"
             placeholder="Username"
           >
             <a-icon
@@ -32,16 +32,16 @@
         <a-form-item>
           <a-input
             v-decorator="[
-            'password',
-            {
-              rules: [
-                { required: true, message: 'Please input your Password!' },
-              ],
-            },
-             {
-              initialValue: '',
-            },
-          ]"
+              'password',
+              {
+                rules: [
+                  { required: true, message: 'Please input your Password!' },
+                ],
+              },
+              {
+                initialValue: '',
+              },
+            ]"
             type="password"
             placeholder="Password"
           >
@@ -55,12 +55,12 @@
         <a-form-item>
           <a-checkbox
             v-decorator="[
-            'remember',
-            {
-              valuePropName: 'checked',
-              initialValue: false,
-            },
-          ]"
+              'remember',
+              {
+                valuePropName: 'checked',
+                initialValue: false,
+              },
+            ]"
           >
             Remember me
           </a-checkbox>
@@ -69,21 +69,21 @@
             Log in
           </a-button>
           Or
-          <nuxt-link to="/register">Do not have account! Register now</nuxt-link>
+          <nuxt-link to="/register"
+            >Do not have account! Register now</nuxt-link
+          >
         </a-form-item>
       </a-form>
-
-
-  </div>
+    </div>
   </a-spin>
 </template>
 
 <script>
 export default {
   layout: 'login',
-  data(){
-    return{
-      loading : false,
+  data() {
+    return {
+      loading: false,
     }
   },
   beforeCreate() {
@@ -95,28 +95,31 @@ export default {
       this.form.validateFields((err, values) => {
         if (!err) {
           this.login({
-            username : values.username,
-            password : values.password
+            username: values.username,
+            password: values.password,
           })
         }
       })
     },
-    async login(user){
-      try{
+    async login(user) {
+      try {
         this.loading = true
         const result = await this.$api.login(user)
-        this.$auth.$storage.setUniversal('token', `${result.tokenType} ${result.accessToken}`);
-        await this.$router.push('/')
-        this.$message.success(`Successfully Login!`);
-      }catch (e) {
-        if(e.response.status === 401){
-          this.$message.warning(`Login Fail`);
+        this.$auth.$storage.setUniversal('token', {
+          token: `${result.tokenType} ${result.accessToken}`,
+          roles: result.roles,
+        })
+        await this.$router.push('/admin/dashboard')
+        this.$message.success(`Successfully Login!`)
+      } catch (e) {
+        if (e.response.status === 401) {
+          this.$message.warning(`Login Fail`)
         }
-      }finally {
+      } finally {
         this.form.value.resetFields()
         this.loading = false
       }
-    }
+    },
   },
 }
 </script>

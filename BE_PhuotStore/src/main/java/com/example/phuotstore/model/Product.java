@@ -18,24 +18,24 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int productID;
 
-    @NotNull
+    @NotNull(message = "Product Name must not be null")
     private String productName;
 
-    @NotNull
+    @NotNull(message = "Product Code must not be null")
     private String productCode;
 
-
+    @NotNull(message = "Product Description must not be null")
     private String productDesc;
 
     private int discount;
 
-    @NotNull
+    @NotNull(message = "Status must not be null")
     private String status;
 
-    @NotNull
+    @NotNull(message = "Quantity must not be null")
     private int qty;
 
-    @NotNull
+    @NotNull(message = "Price must not be null")
     private double price;
 
     @CreationTimestamp
@@ -46,23 +46,24 @@ public class Product {
     private int rating;
 
     @ManyToOne
-    @NotNull
     @JoinColumn(name = "categoryID", referencedColumnName = "categoryID")
     private Category category;
 
     @ManyToOne
-    @NotNull
     @JoinColumn(name = "brandID", referencedColumnName = "brandID")
     private Brand brand;
 
-    @ManyToOne
-    @JoinColumn(name = "commentID", referencedColumnName = "commentID")
-    private Comment comment;
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private Set<Image> images = new HashSet<>();
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private Set<Comment> comments = new HashSet<>();
+
 
     public Product() {
     }
 
-    public Product(int productID, @NotNull String productName, @NotNull String productCode, String productDesc, int discount, @NotNull String status, @NotNull int qty, @NotNull double price, Date createAt, Date updateAt, int rating, @NotNull Category category, @NotNull Brand brand, Comment comment) {
+    public Product(int productID, String productName, String productCode, String productDesc, int discount, String status, int qty, double price, Date createAt, Date updateAt, int rating, Category category, Brand brand, Set<Image> images, Set<Comment> comments) {
         this.productID = productID;
         this.productName = productName;
         this.productCode = productCode;
@@ -76,7 +77,8 @@ public class Product {
         this.rating = rating;
         this.category = category;
         this.brand = brand;
-        this.comment = comment;
+        this.images = images;
+        this.comments = comments;
     }
 
     public Date getCreateAt() {
@@ -184,11 +186,19 @@ public class Product {
         this.rating = rating;
     }
 
-    public Comment getComment() {
-        return comment;
+    public Set<Comment> getComments() {
+        return comments;
     }
 
-    public void setComment(Comment comment) {
-        this.comment = comment;
+    public void setComments(Set<Comment> comments) {
+        this.comments = comments;
+    }
+
+    public Set<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(Set<Image> images) {
+        this.images = images;
     }
 }

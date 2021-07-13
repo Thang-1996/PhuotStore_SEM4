@@ -41,15 +41,15 @@ public class ImageAPI {
         return ResponseEntity.ok(imageRepository.findImagesByProductID(id, pageable));
     }
 
-    @GetMapping("/hidden")
-    public ResponseEntity<Page<Image>> getImagesByStatusHidden(Pageable pageable) {
-        return ResponseEntity.ok(imageRepository.findPaginateImagesStatusHidden(pageable));
-    }
-
-    @GetMapping("/show")
-    public ResponseEntity<Page<Image>> getImagesByStatusShow(Pageable pageable) {
-        return ResponseEntity.ok(imageRepository.findPaginateImagesStatusShow(pageable));
-    }
+//    @GetMapping("/hidden")
+//    public ResponseEntity<Page<Image>> getImagesByStatusHidden(Pageable pageable) {
+//        return ResponseEntity.ok(imageRepository.findPaginateImagesStatusHidden(pageable));
+//    }
+//
+//    @GetMapping("/show")
+//    public ResponseEntity<Page<Image>> getImagesByStatusShow(Pageable pageable) {
+//        return ResponseEntity.ok(imageRepository.findPaginateImagesStatusShow(pageable));
+//    }
 
     @PostMapping("/add")
     public ResponseEntity<?> createImage(@Valid @RequestBody Image image) {

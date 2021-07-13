@@ -12,24 +12,24 @@ public class Image {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int imgID;
 
-    @NotNull
+    @NotNull(message = "Image Name must not be null")
     private String imgName;
 
-    @NotNull
-    private String imgURL;
+    @NotNull(message = "Image URL must not be null")
+    private String  imgURL;
 
-    @NotNull
+    @NotNull(message = "Status must not be null")
     private String status;
 
     @ManyToOne
-    @NotNull
     @JoinColumn(name = "productID", referencedColumnName = "productID")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Product product;
 
     public Image() {
     }
 
-    public Image(int imgID, @NotNull String imgName, @NotNull String imgURL, @NotNull String status, @NotNull Product product) {
+    public Image(int imgID, @NotNull String imgName, @NotNull String imgURL, @NotNull String status, Product product) {
         this.imgID = imgID;
         this.imgName = imgName;
         this.imgURL = imgURL;

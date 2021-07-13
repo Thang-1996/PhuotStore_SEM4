@@ -14,15 +14,16 @@ public class Shop {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int shopID;
 
-    @NotNull
+    @NotNull(message = "Shop Name must not be null")
     private String shopName;
 
+    @NotNull(message = "Phone must not be null")
     private String phone;
 
-    @NotNull
+    @NotNull(message = "Address must not be null")
     private String address;
 
-    @NotNull
+    @NotNull(message = "Status must not be null")
     private String status;
 
     private String country;
@@ -32,7 +33,7 @@ public class Shop {
     public Shop() {
     }
 
-    public Shop(int shopID, @NotNull String shopName, String phone, @NotNull String address, @NotNull String status, String country, String region) {
+    public Shop(int shopID, String shopName, String phone, String address, String status, String country, String region) {
         this.shopID = shopID;
         this.shopName = shopName;
         this.phone = phone;
@@ -82,4 +83,19 @@ public class Shop {
         this.status = status;
     }
 
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
 }

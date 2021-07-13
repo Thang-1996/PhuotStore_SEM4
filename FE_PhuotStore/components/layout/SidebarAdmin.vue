@@ -24,25 +24,31 @@
 <script>
 const sideBar = [
   {
-    path: '/dashboard',
+    path: '/admin/dashboard',
     name: 'Dashboard',
     icon: 'windows',
     active: false,
   },
   {
-    path: '/category',
+    path: '/admin/category',
     name: 'Category',
     icon: 'appstore',
     active: false,
   },
   {
-    path: '/product',
+    path: '/admin/product',
     name: 'Product',
     icon: 'shopping',
     active: false,
   },
   {
-    path: '/booking',
+    path: '/admin/brand',
+    name: 'Brand',
+    icon: 'shopping',
+    active: false,
+  },
+  {
+    path: '/admin/booking',
     name: 'Booking',
     icon: 'calendar',
     active: false,

@@ -16,7 +16,6 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int commentID;
 
-    @NotNull
     private String commentName;
 
     private String commentInfo;
@@ -24,12 +23,12 @@ public class Comment {
     @CreationTimestamp
     private Date commentDate;
 
-    @NotNull
     private String status;
 
     @ManyToOne
     @NotNull
     @JoinColumn(name = "productID", referencedColumnName = "productID")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Product product;
 
     @ManyToOne
@@ -40,7 +39,7 @@ public class Comment {
     public Comment() {
     }
 
-    public Comment(int commentID, @NotNull String commentName, String commentInfo, Date commentDate, String status, @NotNull Product product, @NotNull User user) {
+    public Comment(int commentID, String commentName, String commentInfo, Date commentDate, String status, Product product, User user) {
         this.commentID = commentID;
         this.commentName = commentName;
         this.commentInfo = commentInfo;

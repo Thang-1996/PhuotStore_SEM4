@@ -9,30 +9,21 @@
         @cancel="close"
       >
         <a-form-model
-          :model="category"
+          :model="brand"
           :label-col="labelCol"
           :wrapper-col="wrapperCol"
         >
-          <a-form-model-item label="Category Name">
-            <a-input
-              v-model="category.categoryName"
-              placeholder="Enter Category Name"
-            />
+          <a-form-model-item label="brand Name">
+            <a-input v-model="brand.brandName" placeholder="Enter brand Name" />
           </a-form-model-item>
-          <a-form-model-item label="Category Code">
-            <a-input
-              v-model="category.categoryCode"
-              placeholder="Enter Category Code"
-            />
+          <a-form-model-item label="brand Code">
+            <a-input v-model="brand.brandCode" placeholder="Enter brand Code" />
           </a-form-model-item>
-          <a-form-model-item label="Category Desc">
-            <a-input
-              v-model="category.categoryDesc"
-              placeholder="Enter Category Desc"
-            />
+          <a-form-model-item label="brand Desc">
+            <a-input v-model="brand.brandDesc" placeholder="Enter brand Desc" />
           </a-form-model-item>
           <a-form-model-item v-if="action === 'edit'" label="Status">
-            <a-select v-model="category.status" placeholder="Select Status">
+            <a-select v-model="brand.status" placeholder="Select Status">
               <a-select-option value="1"> 1 </a-select-option>
               <a-select-option value="2"> 2 </a-select-option>
             </a-select>
@@ -51,40 +42,40 @@ export default {
       visible: false,
       confirmLoading: false,
       loading: false,
-      categoryID: '',
+      brandID: '',
       title: '',
       action: '',
-      category: {
-        categoryName: '',
-        categoryCode: '',
-        categoryDesc: '',
+      brand: {
+        brandName: '',
+        brandCode: '',
+        brandDesc: '',
         status: '1',
       },
     }
   },
   methods: {
     show() {
-      this.categoryID = ''
+      this.brandID = ''
       this.action = 'create'
-      this.title = 'Create Category'
+      this.title = 'Create brand'
       this.visible = true
     },
     async showEdit(id) {
       try {
         this.loading = true
         this.action = 'edit'
-        this.title = 'Edit Category'
+        this.title = 'Edit brand'
         this.visible = true
-        const result = await this.$api.getCategory(id, {
+        const result = await this.$api.getBrand(id, {
           headers: {
             Authorization: this.$auth.$storage.getUniversal('token').token,
           },
         })
-        this.categoryID = result.categoryID
-        this.category = {
-          categoryName: result.categoryName,
-          categoryCode: result.categoryCode,
-          categoryDesc: result.categoryDesc,
+        this.brandID = result.brandID
+        this.brand = {
+          brandName: result.brandName,
+          brandCode: result.brandCode,
+          brandDesc: result.brandDesc,
           status: result.status,
         }
       } catch (e) {
@@ -96,28 +87,28 @@ export default {
     async handleOk(e) {
       try {
         this.confirmLoading = true
-        if (this.categoryID !== '') {
-          await this.$api.updateCategory(this.categoryID, this.category, {
+        if (this.brandID !== '') {
+          await this.$api.updateBrand(this.brandID, this.brand, {
             headers: {
               Authorization: this.$auth.$storage.getUniversal('token').token,
             },
           })
-          this.$message.success(`Update Category Successfully!`)
+          this.$message.success(`Update brand Successfully!`)
         } else {
-          await this.$api.addCategory(this.category, {
+          await this.$api.addBrand(this.brand, {
             headers: {
               Authorization: this.$auth.$storage.getUniversal('token').token,
             },
           })
-          this.$message.success(`Add Category Successfully!`)
-          this.category = {
-            categoryName: '',
-            categoryCode: '',
-            categoryDesc: '',
+          this.$message.success(`Add brand Successfully!`)
+          this.brand = {
+            brandName: '',
+            brandCode: '',
+            brandDesc: '',
             status: '1',
           }
         }
-        this.$emit('refreshCategory')
+        this.$emit('refreshBrand')
       } catch (e) {
         if (e.response) {
           this.$message.warning(`Error please try agian!`)
@@ -129,10 +120,10 @@ export default {
     },
     close(e) {
       this.visible = false
-      this.category = {
-        categoryName: '',
-        categoryCode: '',
-        categoryDesc: '',
+      this.brand = {
+        brandName: '',
+        brandCode: '',
+        brandDesc: '',
         status: '1',
       }
     },

@@ -16,17 +16,19 @@ public class OrderRent {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int orderRentID;
 
-    @NotNull
+    @NotNull(message = "Order Rent Name must not be null")
     private String orderRentName;
 
     private String note;
 
     @CreationTimestamp
     private Date createAt;
+
     @CreationTimestamp
     private Date updateAt;
+
     @CreationTimestamp
-    private Date endAt;
+    private Date bookingDate;
 
     @CreationTimestamp
     private Date rentalStart;
@@ -34,11 +36,10 @@ public class OrderRent {
     @CreationTimestamp
     private Date rentalEnd;
 
-    @NotNull
+    @NotNull(message = "Status must not be null")
     private String status;
 
-    @NotNull(message = "Quantity must not be null")
-    private int quantity;
+    private int totalQuantity;
 
     private double totalPrice;
 
@@ -64,15 +65,17 @@ public class OrderRent {
     public OrderRent() {
     }
 
-    public OrderRent(@NotNull String orderRentName, String note, Date createAt, Date updateAt, Date rentalStart, Date rentalEnd, String status, @NotNull(message = "Quantity must not be null") int quantity) {
+    public OrderRent(@NotNull String orderRentName, String note, Date createAt, Date updateAt, Date bookingDate, Date rentalStart, Date rentalEnd, String status,int totalQuantity, double totalPrice) {
         this.orderRentName = orderRentName;
         this.note = note;
         this.createAt = createAt;
         this.updateAt = updateAt;
+        this.bookingDate = bookingDate;
         this.rentalStart = rentalStart;
         this.rentalEnd = rentalEnd;
         this.status = status;
-        this.quantity = quantity;
+        this.totalQuantity = totalQuantity;
+        this.totalPrice = totalPrice;
     }
 
     public int getOrderRentID() {
@@ -115,6 +118,14 @@ public class OrderRent {
         this.updateAt = updateAt;
     }
 
+    public Date getBookingDate() {
+        return bookingDate;
+    }
+
+    public void setBookingDate(Date bookingDate) {
+        this.bookingDate = bookingDate;
+    }
+
     public Date getRentalStart() {
         return rentalStart;
     }
@@ -139,12 +150,12 @@ public class OrderRent {
         this.status = status;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public int getTotalQuantity() {
+        return totalQuantity;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setTotalQuantity(int totalQuantity) {
+        this.totalQuantity = totalQuantity;
     }
 
     public double getTotalPrice() {

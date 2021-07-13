@@ -13,13 +13,13 @@ public class Combo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int comboID;
 
-    @NotNull
+    @NotNull(message = "Combo Name must not be null")
     private String comboName;
 
-    @NotNull
+    @NotNull(message = "Combo Code must not be null")
     private String comboCode;
 
-    @NotNull
+    @NotNull(message = "Combo Description must not be null")
     private String comboDesc;
 
     private int discount;
@@ -27,7 +27,6 @@ public class Combo {
     @NotNull(message = "Quantity must not be null")
     private int quantity;
 
-    @NotNull(message = "Price must not be null")
     private double totalPrice;
 
     @NotNull

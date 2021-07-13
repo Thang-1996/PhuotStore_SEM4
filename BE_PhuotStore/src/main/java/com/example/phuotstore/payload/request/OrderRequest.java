@@ -16,13 +16,15 @@ public class OrderRequest {
 
     @CreationTimestamp
     private Date createAt;
+
     @CreationTimestamp
     private Date updateAt;
 
     private String status;
 
-    @NotNull(message = "Quantity must not be null")
-    private int quantity;
+    private int totalQuantity;
+
+    private double totalPrice;
 
     private Integer userID;
 
@@ -94,11 +96,19 @@ public class OrderRequest {
         this.combo = combo;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public int getTotalQuantity() {
+        return totalQuantity;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setTotalQuantity(int totalQuantity) {
+        this.totalQuantity = totalQuantity;
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 }

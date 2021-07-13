@@ -25,13 +25,12 @@ export default {
       collapsed: false,
     }
   },
-  methods : {
-    async logout(){
+  methods: {
+    async logout() {
       this.$auth.$storage.removeUniversal('token')
-      this.$message.success(`Successfully Logout !`);
+      this.$message.success(`Successfully Logout !`)
       await this.$router.push('/login')
-    }
+    },
   },
-
 }
 </script>

@@ -15,22 +15,22 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int categoryID;
 
-    @NotNull
+    @NotNull(message = "Category Name must not be null")
     private String categoryName;
 
-    @NotNull
+    @NotNull(message = "Category Code must not be null")
     private String categoryCode;
 
-    @NotNull
+    @NotNull(message = "Category Description must not be null")
     private String categoryDesc;
 
-    @NotNull
+    @NotNull(message = "Status must not be null")
     private String status;
 
     public Category() {
     }
 
-    public Category(int categoryID, @NotNull String categoryName, @NotNull String categoryCode, @NotNull String categoryDesc, String status) {
+    public Category(int categoryID, String categoryName, String categoryCode, String categoryDesc, String status) {
         this.categoryID = categoryID;
         this.categoryName = categoryName;
         this.categoryCode = categoryCode;
