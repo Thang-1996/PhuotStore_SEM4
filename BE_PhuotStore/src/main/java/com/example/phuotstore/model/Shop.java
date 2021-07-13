@@ -19,6 +19,7 @@ public class Shop {
 
     private String phone;
 
+    @NotNull
     private String address;
 
     @NotNull
@@ -28,11 +29,10 @@ public class Shop {
 
     private String region;
 
-
     public Shop() {
     }
 
-    public Shop(int shopID, @NotNull String shopName, String phone, String address, @NotNull String status, String country, String region) {
+    public Shop(int shopID, @NotNull String shopName, String phone, @NotNull String address, @NotNull String status, String country, String region) {
         this.shopID = shopID;
         this.shopName = shopName;
         this.phone = phone;

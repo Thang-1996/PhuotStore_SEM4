@@ -18,6 +18,7 @@ import javax.validation.Valid;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping(path = "api/v1/users")
@@ -100,10 +101,10 @@ public class UserAPI {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<User> deleteUser(@PathVariable int id){
-        Optional<User> optionalUser= userRepository.findUserByID(id);
+    public ResponseEntity<User> deleteUser(@PathVariable int id) {
+        Optional<User> optionalUser = userRepository.findUserByID(id);
 
-        if(!optionalUser.isPresent()){
+        if (!optionalUser.isPresent()) {
             return ResponseEntity.unprocessableEntity().build();
         }
         userRepository.delete(optionalUser.get());

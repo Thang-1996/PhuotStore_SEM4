@@ -10,7 +10,6 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.Optional;
 
 public interface OrderRentRepository extends JpaRepository<OrderRent, Integer> {
-    Boolean existsByOrderRentName(String orderRentName);
 
     @Query("SELECT od FROM OrderRent od WHERE od.orderRentID = ?1")
     Optional<OrderRent> findOrderRentByID(Integer orderRentID);

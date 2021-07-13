@@ -43,7 +43,7 @@ public class BrandAPI {
     }
 
     @GetMapping("/show")
-    public ResponseEntity<Page<Brand>> getBrandsByStatusShow( Pageable pageable) {
+    public ResponseEntity<Page<Brand>> getBrandsByStatusShow(Pageable pageable) {
         return ResponseEntity.ok(brandRepository.findPaginateBrandsStatusShow(pageable));
     }
 
@@ -73,11 +73,11 @@ public class BrandAPI {
 
     @PutMapping("/update/{id}")
     public ResponseEntity<?> updateBrand(@PathVariable int id,
-                                             @Valid @RequestBody Brand brand){
+                                         @Valid @RequestBody Brand brand) {
 
-        Optional<Brand> optionalBrand= brandRepository.findBrandByID(id);
+        Optional<Brand> optionalBrand = brandRepository.findBrandByID(id);
 
-        if(!optionalBrand.isPresent()){
+        if (!optionalBrand.isPresent()) {
             return ResponseEntity.unprocessableEntity().build();
         }
         brand.setBrandID(optionalBrand.get().getBrandID());
@@ -86,10 +86,10 @@ public class BrandAPI {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Brand> deleteBrand(@PathVariable int id){
-        Optional<Brand> optionalBrand= brandRepository.findBrandByID(id);
+    public ResponseEntity<Brand> deleteBrand(@PathVariable int id) {
+        Optional<Brand> optionalBrand = brandRepository.findBrandByID(id);
 
-        if(!optionalBrand.isPresent()){
+        if (!optionalBrand.isPresent()) {
             return ResponseEntity.unprocessableEntity().build();
         }
         brandRepository.delete(optionalBrand.get());

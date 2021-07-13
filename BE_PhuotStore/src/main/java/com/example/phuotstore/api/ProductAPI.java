@@ -144,10 +144,10 @@ public class ProductAPI {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Product> deleteProduct(@PathVariable int id){
-        Optional<Product> optionalProduct= productRepository.findProductByID(id);
+    public ResponseEntity<Product> deleteProduct(@PathVariable int id) {
+        Optional<Product> optionalProduct = productRepository.findProductByID(id);
 
-        if(!optionalProduct.isPresent()){
+        if (!optionalProduct.isPresent()) {
             return ResponseEntity.unprocessableEntity().build();
         }
         productRepository.delete(optionalProduct.get());

@@ -29,6 +29,7 @@ public class Combo {
 
     @NotNull(message = "Price must not be null")
     private double totalPrice;
+
     @NotNull
     private String status;
 

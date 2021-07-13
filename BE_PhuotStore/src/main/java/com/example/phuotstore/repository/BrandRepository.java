@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.Optional;
 
 public interface BrandRepository extends JpaRepository<Brand, Integer> {
+
     Boolean existsByBrandName(String brandName);
 
     Boolean existsByBrandCode(String BrandCode);

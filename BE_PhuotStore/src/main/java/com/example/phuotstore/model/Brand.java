@@ -25,6 +25,7 @@ public class Brand {
     @NotNull
     private String status;
 
+
     public Brand() {
     }
 
@@ -75,4 +76,5 @@ public class Brand {
     public void setStatus(String status) {
         this.status = status;
     }
+
 }

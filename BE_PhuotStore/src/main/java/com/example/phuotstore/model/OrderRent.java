@@ -28,13 +28,11 @@ public class OrderRent {
     @CreationTimestamp
     private Date endAt;
 
-
     @CreationTimestamp
     private Date rentalStart;
 
     @CreationTimestamp
     private Date rentalEnd;
-
 
     @NotNull
     private String status;
@@ -52,13 +50,13 @@ public class OrderRent {
     private User user;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(	name = "orderRentProduct",
+    @JoinTable(name = "orderRentProduct",
         joinColumns = @JoinColumn(name = "orderRentID"),
         inverseJoinColumns = @JoinColumn(name = "productID"))
     private Set<Product> products = new HashSet<>();
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(	name = "orderRentCombo",
+    @JoinTable(name = "orderRentCombo",
         joinColumns = @JoinColumn(name = "orderRentID"),
         inverseJoinColumns = @JoinColumn(name = "comboID"))
     private Set<Combo> combos = new HashSet<>();

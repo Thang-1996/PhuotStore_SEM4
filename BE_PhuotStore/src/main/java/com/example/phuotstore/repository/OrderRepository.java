@@ -12,8 +12,6 @@ import java.util.Optional;
 
 public interface OrderRepository extends JpaRepository<Order, Integer> {
 
-    Boolean existsByOrderName(String orderName);
-
     @Query("SELECT cb FROM Order cb WHERE cb.orderID = ?1")
     Optional<Order> findOrderByID(Integer orderID);
 

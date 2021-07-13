@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.*;
+
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping(path = "api/v1/orders")
@@ -37,7 +38,7 @@ public class OrderAPI {
     }
 
     @GetMapping("/user/{id}")
-    public ResponseEntity<Page<Order>> getOrdersByUserID(@PathVariable int id, Pageable pageable ) {
+    public ResponseEntity<Page<Order>> getOrdersByUserID(@PathVariable int id, Pageable pageable) {
         Optional<User> optionalUser = userRepository.findUserByID(id);
         if (!optionalUser.isPresent()) {
             return ResponseEntity.unprocessableEntity().build();
@@ -46,33 +47,33 @@ public class OrderAPI {
     }
 
     @GetMapping("/status/waiting")
-    public ResponseEntity<Page<Order>> getOrdersByStatusWaiting(Pageable pageable ) {
-        return ResponseEntity.ok(orderRepository.findPaginateOrderWaiting( pageable));
+    public ResponseEntity<Page<Order>> getOrdersByStatusWaiting(Pageable pageable) {
+        return ResponseEntity.ok(orderRepository.findPaginateOrderWaiting(pageable));
     }
 
     @GetMapping("/status/confirmed")
-    public ResponseEntity<Page<Order>> getOrdersByStatusConfirmed(Pageable pageable ) {
-        return ResponseEntity.ok(orderRepository.findPaginateOrderConfirmed( pageable));
+    public ResponseEntity<Page<Order>> getOrdersByStatusConfirmed(Pageable pageable) {
+        return ResponseEntity.ok(orderRepository.findPaginateOrderConfirmed(pageable));
     }
 
     @GetMapping("/status/shipping")
-    public ResponseEntity<Page<Order>> getOrdersByStatusShipping(Pageable pageable ) {
-        return ResponseEntity.ok(orderRepository.findPaginateOrderShipping( pageable));
+    public ResponseEntity<Page<Order>> getOrdersByStatusShipping(Pageable pageable) {
+        return ResponseEntity.ok(orderRepository.findPaginateOrderShipping(pageable));
     }
 
     @GetMapping("/status/complete")
-    public ResponseEntity<Page<Order>> getOrdersByStatusComplete(Pageable pageable ) {
-        return ResponseEntity.ok(orderRepository.findPaginateOrderComplete( pageable));
+    public ResponseEntity<Page<Order>> getOrdersByStatusComplete(Pageable pageable) {
+        return ResponseEntity.ok(orderRepository.findPaginateOrderComplete(pageable));
     }
 
     @GetMapping("/status/cancelled")
-    public ResponseEntity<Page<Order>> getOrdersByStatusCancelled(Pageable pageable ) {
-        return ResponseEntity.ok(orderRepository.findPaginateOrderCancelled( pageable));
+    public ResponseEntity<Page<Order>> getOrdersByStatusCancelled(Pageable pageable) {
+        return ResponseEntity.ok(orderRepository.findPaginateOrderCancelled(pageable));
     }
 
     @PutMapping("/update/{id}")
     public ResponseEntity<?> updateOrder(@PathVariable int id,
-                                             @Valid @RequestBody OrderRequest orderRequest) {
+                                         @Valid @RequestBody OrderRequest orderRequest) {
 
         Optional<Order> optionalOrder = orderRepository.findOrderByID(id);
         if (!optionalOrder.isPresent()) {

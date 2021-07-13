@@ -55,7 +55,9 @@ public class CommentAPI {
     }
 
     @GetMapping("/show")
-    public ResponseEntity<Page<Comment>> getCommentsByStatusShow( Pageable pageable) {
+    public ResponseEntity<Page<Comment>> getCommentsByStatusShow(Pageable pageable) {
         return ResponseEntity.ok(commentRepository.findPaginateCommentsStatusShow(pageable));
     }
+
+
 }

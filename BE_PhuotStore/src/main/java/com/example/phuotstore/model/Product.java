@@ -55,9 +55,9 @@ public class Product {
     @JoinColumn(name = "brandID", referencedColumnName = "brandID")
     private Brand brand;
 
-//    @ManyToOne
-//    @JoinColumn(name = "commentID", referencedColumnName = "commentID")
-//    private Comment comment;
+    @ManyToOne
+    @JoinColumn(name = "commentID", referencedColumnName = "commentID")
+    private Comment comment;
 
     public Product() {
     }
@@ -76,7 +76,7 @@ public class Product {
         this.rating = rating;
         this.category = category;
         this.brand = brand;
-//        this.comment = comment;
+        this.comment = comment;
     }
 
     public Date getCreateAt() {
@@ -184,11 +184,11 @@ public class Product {
         this.rating = rating;
     }
 
-//    public Comment getComment() {
-//        return comment;
-//    }
-//
-//    public void setComment(Comment comment) {
-//        this.comment = comment;
-//    }
+    public Comment getComment() {
+        return comment;
+    }
+
+    public void setComment(Comment comment) {
+        this.comment = comment;
+    }
 }

@@ -75,10 +75,10 @@ public class CategoryAPI {
 
     @PutMapping("/update/{id}")
     public ResponseEntity<?> updateCategory(@PathVariable int id,
-                                             @Valid @RequestBody Category category){
-        Optional<Category> optionalCategory= categoryRepository.findCategoryByID(id);
+                                            @Valid @RequestBody Category category) {
+        Optional<Category> optionalCategory = categoryRepository.findCategoryByID(id);
 
-        if(!optionalCategory.isPresent()){
+        if (!optionalCategory.isPresent()) {
             return ResponseEntity.unprocessableEntity().build();
         }
         category.setCategoryID(optionalCategory.get().getCategoryID());
@@ -87,10 +87,10 @@ public class CategoryAPI {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Category> deleteCategory(@PathVariable int id){
-        Optional<Category> optionalCategory= categoryRepository.findCategoryByID(id);
+    public ResponseEntity<Category> deleteCategory(@PathVariable int id) {
+        Optional<Category> optionalCategory = categoryRepository.findCategoryByID(id);
 
-        if(!optionalCategory.isPresent()){
+        if (!optionalCategory.isPresent()) {
             return ResponseEntity.unprocessableEntity().build();
         }
         categoryRepository.delete(optionalCategory.get());

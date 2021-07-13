@@ -26,8 +26,10 @@ public class Order {
 
     @CreationTimestamp
     private Date createAt;
+
     @CreationTimestamp
     private Date updateAt;
+
     @CreationTimestamp
     private Date endAt;
 
