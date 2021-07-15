@@ -10,7 +10,7 @@ import java.util.Optional;
 
 public interface ProductRepository extends JpaRepository<Product, Integer> {
 
-    Boolean existsByProductName(String  productName);
+    Boolean existsByProductName(String productName);
 
     Boolean existsByProductCode(String productCode);
 
@@ -26,12 +26,12 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     @Query("SELECT p FROM Product p WHERE p.brand.brandID = ?1")
     Page<Product> findProductsByBrandID(int brandID, Pageable pageable);
 
-    @Query("SELECT p FROM Product p WHERE p.status = 'SHOW' OR p.status = 'HIDDEN'")
+    @Query("SELECT p FROM Product p")
     Page<Product> getAllProducts(Pageable pageable);
 
-    @Query("SELECT p FROM Product p WHERE p.status = 'SHOW' ")
-    Page<Product> findPaginateProductsStatusShow(Pageable pageable);
-
-    @Query("SELECT p FROM Product p WHERE p.status = 'HIDDEN' ")
-    Page<Product> findPaginateProductsStatusHidden(Pageable pageable);
+//    @Query("SELECT p FROM Product p WHERE p.status = 'SHOW' ")
+//    Page<Product> findPaginateProductsStatusShow(Pageable pageable);
+//
+//    @Query("SELECT p FROM Product p WHERE p.status = 'HIDDEN' ")
+//    Page<Product> findPaginateProductsStatusHidden(Pageable pageable);
 }

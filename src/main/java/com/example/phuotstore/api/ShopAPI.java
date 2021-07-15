@@ -1,6 +1,5 @@
 package com.example.phuotstore.api;
 
-import com.example.phuotstore.model.Brand;
 import com.example.phuotstore.model.Shop;
 import com.example.phuotstore.payload.response.MessageResponse;
 import com.example.phuotstore.repository.ShopRepository;

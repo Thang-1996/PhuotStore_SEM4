@@ -1,10 +1,9 @@
-package com.example.phuotstore.payload.request;
+package com.example.phuotstore.dto;
 
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.util.Set;
 
-public class ComboRequest {
+public class ComboDTO {
 
     @NotNull
     private String comboName;

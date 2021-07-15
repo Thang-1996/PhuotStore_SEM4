@@ -1,8 +1,11 @@
 package com.example.phuotstore.api;
 
 
-import com.example.phuotstore.model.*;
-import com.example.phuotstore.payload.request.OrderRentRequest;
+import com.example.phuotstore.dto.OrderRentDTO;
+import com.example.phuotstore.model.Combo;
+import com.example.phuotstore.model.OrderRent;
+import com.example.phuotstore.model.Product;
+import com.example.phuotstore.model.User;
 import com.example.phuotstore.repository.ComboRepository;
 import com.example.phuotstore.repository.OrderRentRepository;
 import com.example.phuotstore.repository.ProductRepository;
@@ -74,20 +77,18 @@ public class OrderRentAPI {
 
     @PutMapping("/update/{id}")
     public ResponseEntity<?> updateOrderRent(@PathVariable int id,
-                                             @Valid @RequestBody OrderRentRequest orderRentRequest) {
-
-
+                                             @Valid @RequestBody OrderRentDTO orderRentDTO) {
 
         Optional<OrderRent> optionalOrderRent = orderRentRepository.findOrderRentByID(id);
         if (!optionalOrderRent.isPresent()) {
             return ResponseEntity.unprocessableEntity().build();
         }
 
-        OrderRent orderRent = new OrderRent(orderRentRequest.getOrderRentName(), orderRentRequest.getNote(), orderRentRequest.getCreateAt(), orderRentRequest.getUpdateAt(), orderRentRequest.getBookingDate(), orderRentRequest.getRentalStart(), orderRentRequest.getRentalEnd(), orderRentRequest.getStatus(),orderRentRequest.getTotalQuantity(), orderRentRequest.getTotalPrice());
+        OrderRent orderRent = new OrderRent(orderRentDTO.getOrderRentName(), orderRentDTO.getNote(), orderRentDTO.getBookingDate(), orderRentDTO.getRentalStart(), orderRentDTO.getRentalEnd(), orderRentDTO.getStatus(), orderRentDTO.getTotalQuantity(), orderRentDTO.getTotalPrice());
 
-        Set<Integer> productID = orderRentRequest.getProduct();
-        Set<Integer> comboID = orderRentRequest.getCombo();
-        Set<Integer> userID = orderRentRequest.getUser();
+        Set<Integer> productID = orderRentDTO.getProduct();
+        Set<Integer> comboID = orderRentDTO.getCombo();
+        Set<Integer> userID = orderRentDTO.getUser();
 
         Set<Product> products = new HashSet<>();
         Set<Combo> combos = new HashSet<>();

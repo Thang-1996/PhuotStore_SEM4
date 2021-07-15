@@ -1,10 +1,8 @@
 package com.example.phuotstore.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.HashSet;
@@ -65,11 +63,9 @@ public class OrderRent {
     public OrderRent() {
     }
 
-    public OrderRent(@NotNull String orderRentName, String note, Date createAt, Date updateAt, Date bookingDate, Date rentalStart, Date rentalEnd, String status,int totalQuantity, double totalPrice) {
+    public OrderRent(@NotNull String orderRentName, String note, Date bookingDate, Date rentalStart, Date rentalEnd, String status,int totalQuantity, double totalPrice) {
         this.orderRentName = orderRentName;
         this.note = note;
-        this.createAt = createAt;
-        this.updateAt = updateAt;
         this.bookingDate = bookingDate;
         this.rentalStart = rentalStart;
         this.rentalEnd = rentalEnd;

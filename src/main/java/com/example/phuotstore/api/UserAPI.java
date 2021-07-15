@@ -1,9 +1,8 @@
 package com.example.phuotstore.api;
 
-import com.example.phuotstore.model.*;
-import com.example.phuotstore.payload.request.SignupRequest;
-import com.example.phuotstore.payload.request.UserRequest;
-import com.example.phuotstore.payload.response.MessageResponse;
+import com.example.phuotstore.dto.UserDTO;
+import com.example.phuotstore.model.Role;
+import com.example.phuotstore.model.User;
 import com.example.phuotstore.repository.CommentRepository;
 import com.example.phuotstore.repository.RoleRepository;
 import com.example.phuotstore.repository.UserRepository;
@@ -55,17 +54,17 @@ public class UserAPI {
     }
 
     @PutMapping("update/{id}")
-    public ResponseEntity<?> updateUser(@PathVariable int id, @Valid @RequestBody UserRequest userRequest) {
+    public ResponseEntity<?> updateUser(@PathVariable int id, @Valid @RequestBody UserDTO userDTO) {
         Optional<User> optionalUser = userRepository.findUserByID(id);
         if (!optionalUser.isPresent()) {
             return ResponseEntity.unprocessableEntity().build();
         }
 
-        User user = new User(userRequest.getUsername(),
-            userRequest.getEmail(),
-            encoder.encode(userRequest.getPassword()));
+        User user = new User(userDTO.getUsername(),
+            userDTO.getEmail(),
+            encoder.encode(userDTO.getPassword()));
 
-        Set<String> strRoles = userRequest.getRoles();
+        Set<String> strRoles = userDTO.getRoles();
         Set<Role> roles = new HashSet<>();
         if (strRoles == null) {
             Role userRole = roleRepository.findByRoleName(ROLE_USER)
@@ -93,9 +92,9 @@ public class UserAPI {
         }
         user.setRoles(roles);
         user.setUserID(optionalUser.get().getUserID());
-        user.setPhone(userRequest.getPhone());
-        user.setAddress(userRequest.getAddress());
-        user.setAvatar(userRequest.getAvatar());
+        user.setPhone(userDTO.getPhone());
+        user.setAddress(userDTO.getAddress());
+        user.setAvatar(userDTO.getAvatar());
         userRepository.save(user);
         return ResponseEntity.ok(optionalUser.get());
     }

@@ -1,10 +1,12 @@
-package com.example.phuotstore.payload.request;
+package com.example.phuotstore.dto;
 
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.Set;
 
-public class UserRequest {
+public class UserDTO {
     @NotBlank
     @Size(min = 3, max = 20)
     private String username;

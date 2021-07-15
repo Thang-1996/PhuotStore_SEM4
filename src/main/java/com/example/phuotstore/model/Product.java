@@ -1,11 +1,9 @@
 package com.example.phuotstore.model;
 
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.HashSet;
@@ -63,8 +61,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(int productID, String productName, String productCode, String productDesc, int discount, String status, int qty, double price, Date createAt, Date updateAt, int rating, Category category, Brand brand, Set<Image> images, Set<Comment> comments) {
-        this.productID = productID;
+    public Product(String productName, String productCode, String productDesc, int discount, String status, int qty, double price, int rating) {
         this.productName = productName;
         this.productCode = productCode;
         this.productDesc = productDesc;
@@ -72,13 +69,7 @@ public class Product {
         this.status = status;
         this.qty = qty;
         this.price = price;
-        this.createAt = createAt;
-        this.updateAt = updateAt;
         this.rating = rating;
-        this.category = category;
-        this.brand = brand;
-        this.images = images;
-        this.comments = comments;
     }
 
     public Date getCreateAt() {

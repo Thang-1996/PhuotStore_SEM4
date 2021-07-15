@@ -1,24 +1,15 @@
-package com.example.phuotstore.payload.request;
+package com.example.phuotstore.dto;
 
-import org.hibernate.annotations.CreationTimestamp;
-
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
 import java.util.Set;
 
-public class OrderRequest {
+public class OrderDTO {
 
     @NotNull
     private String orderName;
 
     private String note;
 
-    @CreationTimestamp
-    private Date createAt;
-
-    @CreationTimestamp
-    private Date updateAt;
 
     private String status;
 
@@ -46,22 +37,6 @@ public class OrderRequest {
 
     public void setNote(String note) {
         this.note = note;
-    }
-
-    public Date getCreateAt() {
-        return createAt;
-    }
-
-    public void setCreateAt(Date createAt) {
-        this.createAt = createAt;
-    }
-
-    public Date getUpdateAt() {
-        return updateAt;
-    }
-
-    public void setUpdateAt(Date updateAt) {
-        this.updateAt = updateAt;
     }
 
     public String getStatus() {

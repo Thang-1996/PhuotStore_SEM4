@@ -1,8 +1,12 @@
 package com.example.phuotstore.api;
 
-import com.example.phuotstore.model.*;
-import com.example.phuotstore.payload.response.MessageResponse;
-import com.example.phuotstore.repository.*;
+import com.example.phuotstore.dto.InventoryDTO;
+import com.example.phuotstore.model.Inventory;
+import com.example.phuotstore.model.Product;
+import com.example.phuotstore.model.Shop;
+import com.example.phuotstore.repository.InventoryRepository;
+import com.example.phuotstore.repository.ProductRepository;
+import com.example.phuotstore.repository.ShopRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +15,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
-import java.util.Date;
 import java.util.Optional;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -53,17 +56,19 @@ public class InventoryAPI {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<?> createInventory(@Valid @RequestBody Inventory inventory) {
+    public ResponseEntity<?> createInventory(@Valid @RequestBody InventoryDTO inventoryDTO) {
 
-        Optional<Product> optionalProduct = productRepository.findProductByID(inventory.getProduct().getProductID());
+        Optional<Product> optionalProduct = productRepository.findProductByID(inventoryDTO.getProductID());
         if (!optionalProduct.isPresent()) {
             return ResponseEntity.unprocessableEntity().build();
         }
 
-        Optional<Shop> optionalShop = shopRepository.findShopByID(inventory.getShop().getShopID());
+        Optional<Shop> optionalShop = shopRepository.findShopByID(inventoryDTO.getShopID());
         if (!optionalShop.isPresent()) {
             return ResponseEntity.unprocessableEntity().build();
         }
+
+        Inventory inventory = new Inventory(inventoryDTO.getQtyOnHand());
 
         inventory.setProduct(optionalProduct.get());
         inventory.setShop(optionalShop.get());
@@ -78,23 +83,24 @@ public class InventoryAPI {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<?> updateInventory(@PathVariable int id, @Valid @RequestBody Inventory inventory) {
+    public ResponseEntity<?> updateInventory(@PathVariable int id, @Valid @RequestBody InventoryDTO inventoryDTO) {
 
-        Optional<Product> optionalProduct = productRepository.findProductByID(inventory.getProduct().getProductID());
+        Optional<Product> optionalProduct = productRepository.findProductByID(inventoryDTO.getProductID());
         if (!optionalProduct.isPresent()) {
             return ResponseEntity.unprocessableEntity().build();
         }
 
-        Optional<Shop> optionalShop = shopRepository.findShopByID(inventory.getShop().getShopID());
+        Optional<Shop> optionalShop = shopRepository.findShopByID(inventoryDTO.getShopID());
         if (!optionalShop.isPresent()) {
             return ResponseEntity.unprocessableEntity().build();
         }
-
 
         Optional<Inventory> optionalInventory = inventoryRepository.findInventoryByID(id);
         if (!optionalInventory.isPresent()) {
             return ResponseEntity.unprocessableEntity().build();
         }
+
+        Inventory inventory = new Inventory(inventoryDTO.getQtyOnHand());
 
         inventory.setInventoryID(optionalInventory.get().getInventoryID());
         inventory.setProduct(optionalProduct.get());

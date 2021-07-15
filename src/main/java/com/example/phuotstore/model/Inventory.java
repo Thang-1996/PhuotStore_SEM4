@@ -1,7 +1,5 @@
 package com.example.phuotstore.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -26,11 +24,8 @@ public class Inventory {
     public Inventory() {
     }
 
-    public Inventory(int inventoryID,  int qtyOnHand, Product product, Shop shop) {
-        this.inventoryID = inventoryID;
+    public Inventory( int qtyOnHand) {
         this.qtyOnHand = qtyOnHand;
-        this.product = product;
-        this.shop = shop;
     }
 
     public int getInventoryID() {

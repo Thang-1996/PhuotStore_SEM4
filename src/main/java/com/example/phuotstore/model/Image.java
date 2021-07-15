@@ -3,7 +3,6 @@ package com.example.phuotstore.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -29,12 +28,10 @@ public class Image {
     public Image() {
     }
 
-    public Image(int imgID, @NotNull String imgName, @NotNull String imgURL, @NotNull String status, Product product) {
-        this.imgID = imgID;
+    public Image(@NotNull String imgName, @NotNull String imgURL, @NotNull String status) {
         this.imgName = imgName;
         this.imgURL = imgURL;
         this.status = status;
-        this.product = product;
     }
 
     public int getImgID() {

@@ -1,10 +1,9 @@
 package com.example.phuotstore.api;
 
 
-import com.example.phuotstore.model.Brand;
+import com.example.phuotstore.dto.ComboDTO;
 import com.example.phuotstore.model.Combo;
 import com.example.phuotstore.model.Product;
-import com.example.phuotstore.payload.request.ComboRequest;
 import com.example.phuotstore.payload.response.MessageResponse;
 import com.example.phuotstore.repository.ComboRepository;
 import com.example.phuotstore.repository.ProductRepository;
@@ -47,7 +46,7 @@ public class ComboAPI {
 
 //    @GetMapping("/hidden")
 //    public ResponseEntity<Page<Combo>> getCombosByStatusHidden(Pageable pageable) {
-//        return ResponseEntity.ok(comboRepository.findPaginateCombosStatusHidden(pageable));
+//        return ResponseEntity.ok(comboRepository.findPaginateCombosStatu sHidden(pageable));
 //    }
 //
 //    @GetMapping("/show")
@@ -56,22 +55,22 @@ public class ComboAPI {
 //    }
 
     @PostMapping("/add")
-    public ResponseEntity<?> createCombo(@Valid @RequestBody ComboRequest comboRequest) {
-        if (comboRepository.existsByComboName(comboRequest.getComboName())) {
+    public ResponseEntity<?> createCombo(@Valid @RequestBody ComboDTO comboDTO) {
+        if (comboRepository.existsByComboName(comboDTO.getComboName())) {
             return ResponseEntity
                 .badRequest()
                 .body(new MessageResponse("Error: Combo Name is already!"));
         }
 
-        if (comboRepository.existsByComboCode(comboRequest.getComboCode())) {
+        if (comboRepository.existsByComboCode(comboDTO.getComboCode())) {
             return ResponseEntity
                 .badRequest()
                 .body(new MessageResponse("Error: Combo Code is already!"));
         }
 
-        Combo combo = new Combo(comboRequest.getComboName(), comboRequest.getComboCode(), comboRequest.getComboDesc(), comboRequest.getDiscount(), comboRequest.getQuantity(), comboRequest.getStatus());
+        Combo combo = new Combo(comboDTO.getComboName(), comboDTO.getComboCode(), comboDTO.getComboDesc(), comboDTO.getDiscount(), comboDTO.getQuantity(), comboDTO.getStatus());
 
-        Set<Integer> productID = comboRequest.getProduct();
+        Set<Integer> productID = comboDTO.getProduct();
         Set<Product> products = new HashSet<>();
         if (productID == null) {
             return ResponseEntity.unprocessableEntity().build();
@@ -94,7 +93,7 @@ public class ComboAPI {
 
     @PutMapping("/update/{id}")
     public ResponseEntity<?> updateCombo(@PathVariable int id,
-                                         @Valid @RequestBody ComboRequest comboRequest) {
+                                         @Valid @RequestBody ComboDTO comboDTO) {
 
 
         Optional<Combo> optionalCombo = comboRepository.findComboByID(id);
@@ -104,9 +103,9 @@ public class ComboAPI {
         }
 
 
-        Combo combo = new Combo(comboRequest.getComboName(), comboRequest.getComboCode(), comboRequest.getComboDesc(), comboRequest.getDiscount(), comboRequest.getQuantity(), comboRequest.getStatus());
+        Combo combo = new Combo(comboDTO.getComboName(), comboDTO.getComboCode(), comboDTO.getComboDesc(), comboDTO.getDiscount(), comboDTO.getQuantity(), comboDTO.getStatus());
 
-        Set<Integer> productID = comboRequest.getProduct();
+        Set<Integer> productID = comboDTO.getProduct();
         Set<Product> products = new HashSet<>();
         if (productID == null) {
             return ResponseEntity.unprocessableEntity().build();

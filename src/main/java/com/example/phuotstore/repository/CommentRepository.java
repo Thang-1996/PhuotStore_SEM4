@@ -16,12 +16,12 @@ public interface CommentRepository extends JpaRepository<Comment, Integer> {
     @Query("SELECT cmt FROM Comment cmt WHERE cmt.user.userID =?1")
     Page<Comment> findCommentsByUserID(Integer userID, Pageable pageable);
 
-    @Query("SELECT cmt FROM Comment cmt WHERE cmt.status = 'SHOW' OR cmt.status = 'HIDDEN'")
+    @Query("SELECT cmt FROM Comment cmt")
     Page<Comment> getAllComments(Pageable pageable);
 
-    @Query("SELECT cmt FROM Comment cmt WHERE cmt.status = 'SHOW' ")
-    Page<Comment> findPaginateCommentsStatusShow(Pageable pageable);
-
-    @Query("SELECT cmt FROM Comment cmt WHERE cmt.status = 'HIDDEN' ")
-    Page<Comment> findPaginateCommentsStatusHidden(Pageable pageable);
+//    @Query("SELECT cmt FROM Comment cmt WHERE cmt.status = 'SHOW' ")
+//    Page<Comment> findPaginateCommentsStatusShow(Pageable pageable);
+//
+//    @Query("SELECT cmt FROM Comment cmt WHERE cmt.status = 'HIDDEN' ")
+//    Page<Comment> findPaginateCommentsStatusHidden(Pageable pageable);
 }

@@ -1,7 +1,6 @@
 package com.example.phuotstore.repository;
 
 import com.example.phuotstore.model.Brand;
-import com.example.phuotstore.model.Category;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -18,12 +17,12 @@ public interface BrandRepository extends JpaRepository<Brand, Integer> {
     @Query("SELECT br FROM Brand br WHERE br.brandID = ?1")
     Optional<Brand> findBrandByID(Integer brandID);
 
-    @Query("SELECT br FROM Brand br WHERE br.status = 'SHOW' OR br.status = 'HIDDEN'")
+    @Query("SELECT br FROM Brand br")
     Page<Brand> getAllBrands(Pageable pageable);
 
-    @Query("SELECT br FROM Brand br WHERE br.status = 'SHOW' ")
-    Page<Brand> findPaginateBrandsStatusShow(Pageable pageable);
-
-    @Query("SELECT br FROM Brand br WHERE br.status = 'HIDDEN' ")
-    Page<Brand> findPaginateBrandsStatusHidden(Pageable pageable);
+//    @Query("SELECT br FROM Brand br WHERE br.status = 'SHOW' ")
+//    Page<Brand> findPaginateBrandsStatusShow(Pageable pageable);
+//
+//    @Query("SELECT br FROM Brand br WHERE br.status = 'HIDDEN' ")
+//    Page<Brand> findPaginateBrandsStatusHidden(Pageable pageable);
 }

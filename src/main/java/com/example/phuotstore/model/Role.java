@@ -1,13 +1,6 @@
 package com.example.phuotstore.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
 
 @Entity
 @Table(name = "\"role\"")

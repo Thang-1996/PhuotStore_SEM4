@@ -1,22 +1,25 @@
 package com.example.phuotstore.api;
 
-import com.example.phuotstore.model.*;
-import com.example.phuotstore.payload.request.ComboRequest;
-import com.example.phuotstore.payload.request.OrderRequest;
+import com.example.phuotstore.dto.OrderDTO;
+import com.example.phuotstore.model.Combo;
+import com.example.phuotstore.model.Order;
+import com.example.phuotstore.model.Product;
+import com.example.phuotstore.model.User;
 import com.example.phuotstore.repository.ComboRepository;
 import com.example.phuotstore.repository.OrderRepository;
 import com.example.phuotstore.repository.ProductRepository;
 import com.example.phuotstore.repository.UserRepository;
-import com.example.phuotstore.security.exeption.ErrorDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.*;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -35,6 +38,15 @@ public class OrderAPI {
     @GetMapping //read data
     public ResponseEntity<Page<Order>> getAllOrders(Pageable pageable) {
         return ResponseEntity.ok(orderRepository.getAllOrders(pageable));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Order> getOrderByID(@PathVariable int id) {
+        Optional<Order> optionalOrder = orderRepository.findOrderByID(id);
+        if (!optionalOrder.isPresent()) {
+            return ResponseEntity.unprocessableEntity().build();
+        }
+        return ResponseEntity.ok(optionalOrder.get());
     }
 
     @GetMapping("/user/{id}")
@@ -73,18 +85,18 @@ public class OrderAPI {
 
     @PutMapping("/update/{id}")
     public ResponseEntity<?> updateOrder(@PathVariable int id,
-                                         @Valid @RequestBody OrderRequest orderRequest) {
+                                         @Valid @RequestBody OrderDTO orderDTO) {
 
         Optional<Order> optionalOrder = orderRepository.findOrderByID(id);
         if (!optionalOrder.isPresent()) {
             return ResponseEntity.unprocessableEntity().build();
         }
 
-        Order order = new Order(orderRequest.getOrderName(), orderRequest.getNote(), orderRequest.getCreateAt(), orderRequest.getUpdateAt(), orderRequest.getStatus(), orderRequest.getTotalQuantity(), orderRequest.getTotalPrice());
+        Order order = new Order(orderDTO.getOrderName(), orderDTO.getNote(), orderDTO.getStatus(), orderDTO.getTotalQuantity(), orderDTO.getTotalPrice());
 
-        Set<Integer> productID = orderRequest.getProduct();
-        Set<Integer> comboID = orderRequest.getCombo();
-        Integer userID = orderRequest.getUserID();
+        Set<Integer> productID = orderDTO.getProduct();
+        Set<Integer> comboID = orderDTO.getCombo();
+        Integer userID = orderDTO.getUserID();
 
         Set<Product> products = new HashSet<>();
         Set<Combo> combos = new HashSet<>();

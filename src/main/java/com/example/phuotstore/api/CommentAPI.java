@@ -1,6 +1,7 @@
 package com.example.phuotstore.api;
 
-import com.example.phuotstore.model.*;
+import com.example.phuotstore.model.Comment;
+import com.example.phuotstore.model.User;
 import com.example.phuotstore.repository.CommentRepository;
 import com.example.phuotstore.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,13 +1,12 @@
-package com.example.phuotstore.payload.request;
+package com.example.phuotstore.dto;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.Set;
 
-public class OrderRentRequest {
+public class OrderRentDTO {
 
     @NotNull
     private String orderRentName;
@@ -21,12 +20,6 @@ public class OrderRentRequest {
     private double totalPrice;
 
     private double rental;
-
-    @CreationTimestamp
-    private Date createAt;
-
-    @CreationTimestamp
-    private Date updateAt;
 
     @CreationTimestamp
     private Date bookingDate;
@@ -113,22 +106,6 @@ public class OrderRentRequest {
 
     public void setCombo(Set<Integer> combo) {
         this.combo = combo;
-    }
-
-    public Date getCreateAt() {
-        return createAt;
-    }
-
-    public void setCreateAt(Date createAt) {
-        this.createAt = createAt;
-    }
-
-    public Date getUpdateAt() {
-        return updateAt;
-    }
-
-    public void setUpdateAt(Date updateAt) {
-        this.updateAt = updateAt;
     }
 
     public Date getRentalStart() {

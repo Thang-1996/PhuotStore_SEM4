@@ -1,6 +1,7 @@
 package com.example.phuotstore.api;
 
 
+import com.example.phuotstore.dto.ImageDTO;
 import com.example.phuotstore.model.Image;
 import com.example.phuotstore.model.Product;
 import com.example.phuotstore.repository.ImageRepository;
@@ -52,12 +53,15 @@ public class ImageAPI {
 //    }
 
     @PostMapping("/add")
-    public ResponseEntity<?> createImage(@Valid @RequestBody Image image) {
+    public ResponseEntity<?> createImage(@Valid @RequestBody ImageDTO imageDTO) {
 
-        Optional<Product> optionalProduct = productRepository.findProductByID(image.getProduct().getProductID());
+        Optional<Product> optionalProduct = productRepository.findProductByID(imageDTO.getProductID());
         if (!optionalProduct.isPresent()) {
             return ResponseEntity.unprocessableEntity().build();
         }
+
+        Image image = new Image(imageDTO.getImgName(), imageDTO.getImgURL(), imageDTO.getStatus());
+
         image.setProduct(optionalProduct.get());
 
         Image imageSaved = imageRepository.save(image);
@@ -70,9 +74,9 @@ public class ImageAPI {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<?> updateImage(@PathVariable int id, @Valid @RequestBody Image image) {
+    public ResponseEntity<?> updateImage(@PathVariable int id, @Valid @RequestBody ImageDTO imageDTO) {
 
-        Optional<Product> optionalProduct = productRepository.findProductByID(image.getProduct().getProductID());
+        Optional<Product> optionalProduct = productRepository.findProductByID(imageDTO.getProductID());
         if (!optionalProduct.isPresent()) {
             return ResponseEntity.unprocessableEntity().build();
         }
@@ -81,6 +85,8 @@ public class ImageAPI {
         if (!optionalImage.isPresent()) {
             return ResponseEntity.unprocessableEntity().build();
         }
+
+        Image image = new Image(imageDTO.getImgName(), imageDTO.getImgURL(), imageDTO.getStatus());
 
         image.setImgID(optionalImage.get().getImgID());
         image.setProduct(optionalProduct.get());
