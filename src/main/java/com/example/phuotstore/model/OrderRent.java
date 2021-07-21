@@ -43,9 +43,13 @@ public class OrderRent {
 
     private double rental;
 
-    private String fullName;
-    private String address;
+    private String paymentType;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String shippingAddress;
     private String phone;
+
 
     @ManyToOne
     @NotNull
@@ -67,7 +71,7 @@ public class OrderRent {
     public OrderRent() {
     }
 
-    public OrderRent(@NotNull String orderRentName, String note, String status,int totalQuantity, double totalPrice, double rental, Date bookingDate, Date rentalStart, Date rentalEnd, String fullName, String address, String phone) {
+    public OrderRent(@NotNull String orderRentName, String note, String status,int totalQuantity, double totalPrice, double rental, Date bookingDate, Date rentalStart, Date rentalEnd,  String firstName, String lastName, String email, String shippingAddress, String phone, String paymentType) {
         this.orderRentName = orderRentName;
         this.note = note;
         this.rental = rental;
@@ -77,9 +81,12 @@ public class OrderRent {
         this.status = status;
         this.totalQuantity = totalQuantity;
         this.totalPrice = totalPrice;
-        this.fullName= fullName;
-        this.address = address;
+        this.firstName= firstName;
+        this.lastName= lastName;
+        this.email= email;
+        this.shippingAddress = shippingAddress;
         this.phone = phone;
+        this.paymentType = paymentType;
     }
 
     public int getOrderRentID() {
@@ -202,20 +209,36 @@ public class OrderRent {
         this.combos = combos;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getAddress() {
-        return address;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getShippingAddress() {
+        return shippingAddress;
+    }
+
+    public void setShippingAddress(String shippingAddress) {
+        this.shippingAddress = shippingAddress;
     }
 
     public String getPhone() {

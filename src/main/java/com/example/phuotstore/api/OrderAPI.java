@@ -97,7 +97,7 @@ public class OrderAPI {
             return ResponseEntity.unprocessableEntity().build();
         }
 
-        Order order = new Order(orderDTO.getOrderName(), orderDTO.getNote(), orderDTO.getStatus(), orderDTO.getTotalQuantity(), orderDTO.getTotalPrice(), orderDTO.getFullName(), orderDTO.getAddress(), orderDTO.getPhone());
+        Order order = new Order(orderDTO.getOrderName(), orderDTO.getNote(), orderDTO.getStatus(), orderDTO.getTotalQuantity(), orderDTO.getTotalPrice(), orderDTO.getFirstName(), orderDTO.getLastName(), orderDTO.getEmail(), orderDTO.getShippingAddress(), orderDTO.getPhone(), orderDTO.getPaymentType());
 
         Set<Integer> productID = orderDTO.getProduct();
         Set<Integer> comboID = orderDTO.getCombo();
@@ -140,7 +140,13 @@ public class OrderAPI {
             return ResponseEntity.unprocessableEntity().build();
         }
 
-        Order order = new Order(orderDTO.getOrderName(), orderDTO.getNote(), orderDTO.getStatus(), orderDTO.getTotalQuantity(), orderDTO.getTotalPrice(), orderDTO.getFullName(), orderDTO.getAddress(), orderDTO.getPhone());
+        Optional<User> optionalUser = userRepository.findUserByID(orderDTO.getUserID());
+        if (!optionalUser.isPresent()) {
+            return ResponseEntity.unprocessableEntity().build();
+        }
+
+
+        Order order = new Order(orderDTO.getOrderName(), orderDTO.getNote(), orderDTO.getStatus(), orderDTO.getTotalQuantity(), orderDTO.getTotalPrice(), orderDTO.getFirstName(), orderDTO.getLastName(), orderDTO.getEmail(), orderDTO.getShippingAddress(), orderDTO.getPhone(), orderDTO.getPaymentType());
 
         Set<Integer> productID = orderDTO.getProduct();
         Set<Integer> comboID = orderDTO.getCombo();
@@ -165,6 +171,7 @@ public class OrderAPI {
             order.setCombos(combos);
             order.setUpdateAt(new Date());
             order.setOrderID(optionalOrder.get().getOrderID());
+            order.setUser(optionalUser.get());
             orderRepository.save(order);
             return ResponseEntity.ok(optionalOrder.get());
         }

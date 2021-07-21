@@ -17,9 +17,13 @@ public class OrderDTO {
 
     private double totalPrice;
 
-    private String fullName;
-    private String address;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String shippingAddress;
     private String phone;
+    private String paymentType;
+
 
     private Integer userID;
 
@@ -91,20 +95,36 @@ public class OrderDTO {
         this.totalPrice = totalPrice;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getAddress() {
-        return address;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getShippingAddress() {
+        return shippingAddress;
+    }
+
+    public void setShippingAddress(String shippingAddress) {
+        this.shippingAddress = shippingAddress;
     }
 
     public String getPhone() {
@@ -113,5 +133,13 @@ public class OrderDTO {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getPaymentType() {
+        return paymentType;
+    }
+
+    public void setPaymentType(String paymentType) {
+        this.paymentType = paymentType;
     }
 }

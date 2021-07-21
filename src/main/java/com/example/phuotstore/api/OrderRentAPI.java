@@ -89,7 +89,7 @@ public class OrderRentAPI {
             return ResponseEntity.unprocessableEntity().build();
         }
 
-        OrderRent orderRent = new OrderRent(orderRentDTO.getOrderRentName(), orderRentDTO.getNote(), orderRentDTO.getStatus(), orderRentDTO.getTotalQuantity(), orderRentDTO.getTotalPrice(), orderRentDTO.getRental(), orderRentDTO.getBookingDate(), orderRentDTO.getRentalStart(), orderRentDTO.getRentalEnd(), orderRentDTO.getFullName(), orderRentDTO.getAddress(), orderRentDTO.getPhone());
+        OrderRent orderRent = new OrderRent(orderRentDTO.getOrderRentName(), orderRentDTO.getNote(), orderRentDTO.getStatus(), orderRentDTO.getTotalQuantity(), orderRentDTO.getTotalPrice(), orderRentDTO.getRental(), orderRentDTO.getBookingDate(), orderRentDTO.getRentalStart(), orderRentDTO.getRentalEnd(), orderRentDTO.getFirstName(), orderRentDTO.getLastName(), orderRentDTO.getEmail(), orderRentDTO.getShippingAddress(), orderRentDTO.getPhone(), orderRentDTO.getPaymentType());
 
         Set<Integer> productID = orderRentDTO.getProduct();
         Set<Integer> comboID = orderRentDTO.getCombo();
@@ -132,7 +132,12 @@ public class OrderRentAPI {
             return ResponseEntity.unprocessableEntity().build();
         }
 
-        OrderRent orderRent = new OrderRent(orderRentDTO.getOrderRentName(), orderRentDTO.getNote(), orderRentDTO.getStatus(), orderRentDTO.getTotalQuantity(), orderRentDTO.getTotalPrice(), orderRentDTO.getRental(), orderRentDTO.getBookingDate(), orderRentDTO.getRentalStart(), orderRentDTO.getRentalEnd(), orderRentDTO.getFullName(), orderRentDTO.getAddress(), orderRentDTO.getPhone());
+        Optional<User> optionalUser = userRepository.findUserByID(orderRentDTO.getUserID());
+        if (!optionalUser.isPresent()) {
+            return ResponseEntity.unprocessableEntity().build();
+        }
+
+        OrderRent orderRent = new OrderRent(orderRentDTO.getOrderRentName(), orderRentDTO.getNote(), orderRentDTO.getStatus(), orderRentDTO.getTotalQuantity(), orderRentDTO.getTotalPrice(), orderRentDTO.getRental(), orderRentDTO.getBookingDate(), orderRentDTO.getRentalStart(), orderRentDTO.getRentalEnd(), orderRentDTO.getFirstName(), orderRentDTO.getLastName(), orderRentDTO.getEmail(), orderRentDTO.getShippingAddress(), orderRentDTO.getPhone(), orderRentDTO.getPaymentType());
 
         Set<Integer> productID = orderRentDTO.getProduct();
         Set<Integer> comboID = orderRentDTO.getCombo();
@@ -161,5 +166,4 @@ public class OrderRentAPI {
             return ResponseEntity.ok(optionalOrderRent.get());
         }
     }
-
 }
