@@ -50,23 +50,23 @@ public class ProductAPI {
         return ResponseEntity.ok(optionalProduct.get());
     }
 
-//    @GetMapping("/brands/{id}")
-//    public ResponseEntity<Page<Product>> getProductByBrandID(@PathVariable int id, Pageable pageable) {
-//        Optional<Brand> optionalBrand = brandRepository.findBrandByID(id);
-//        if (!optionalBrand.isPresent()) {
-//            return ResponseEntity.unprocessableEntity().build();
-//        }
-//        return ResponseEntity.ok(productRepository.findProductsByBrandID(id, pageable));
-//    }
-//
-//    @GetMapping("/categories/{id}")
-//    public ResponseEntity<Page<Product>> getProductByCategoryID(@PathVariable int id, Pageable pageable) {
-//        Optional<Category> optionalCategory = categoryRepository.findCategoryByID(id);
-//        if (!optionalCategory.isPresent()) {
-//            return ResponseEntity.unprocessableEntity().build();
-//        }
-//        return ResponseEntity.ok(productRepository.findProductsByCategoryID(id, pageable));
-//    }
+    @GetMapping("/brands/{id}")
+    public ResponseEntity<Page<Product>> getProductByBrandID(@PathVariable int id, Pageable pageable) {
+        Optional<Brand> optionalBrand = brandRepository.findBrandByID(id);
+        if (!optionalBrand.isPresent()) {
+            return ResponseEntity.unprocessableEntity().build();
+        }
+        return ResponseEntity.ok(productRepository.findProductsByBrandID(id, pageable));
+    }
+
+    @GetMapping("/categories/{id}")
+    public ResponseEntity<Page<Product>> getProductByCategoryID(@PathVariable int id, Pageable pageable) {
+        Optional<Category> optionalCategory = categoryRepository.findCategoryByID(id);
+        if (!optionalCategory.isPresent()) {
+            return ResponseEntity.unprocessableEntity().build();
+        }
+        return ResponseEntity.ok(productRepository.findProductsByCategoryID(id, pageable));
+    }
 
 //    @GetMapping("/hidden")
 //    public ResponseEntity<Page<Product>> getProductsByStatusHidden(Pageable pageable) {
