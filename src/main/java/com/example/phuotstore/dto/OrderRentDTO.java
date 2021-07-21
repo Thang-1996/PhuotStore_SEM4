@@ -30,7 +30,11 @@ public class OrderRentDTO {
     @CreationTimestamp
     private Date rentalEnd;
 
-    private Set<Integer> user;
+    private String fullName;
+    private String address;
+    private String phone;
+
+    private Integer userID;
 
     private Set<Integer> product;
 
@@ -84,12 +88,12 @@ public class OrderRentDTO {
         this.rental = rental;
     }
 
-    public Set<Integer> getUser() {
-        return user;
+    public Integer getUserID() {
+        return userID;
     }
 
-    public void setUser(Set<Integer> user) {
-        this.user = user;
+    public void setUserID(Integer userID) {
+        this.userID = userID;
     }
 
     public Set<Integer> getProduct() {
@@ -130,5 +134,29 @@ public class OrderRentDTO {
 
     public void setBookingDate(Date bookingDate) {
         this.bookingDate = bookingDate;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

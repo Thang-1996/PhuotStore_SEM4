@@ -43,6 +43,10 @@ public class OrderRent {
 
     private double rental;
 
+    private String fullName;
+    private String address;
+    private String phone;
+
     @ManyToOne
     @NotNull
     @JoinColumn(name = "userID", referencedColumnName = "userID")
@@ -63,15 +67,19 @@ public class OrderRent {
     public OrderRent() {
     }
 
-    public OrderRent(@NotNull String orderRentName, String note, Date bookingDate, Date rentalStart, Date rentalEnd, String status,int totalQuantity, double totalPrice) {
+    public OrderRent(@NotNull String orderRentName, String note, String status,int totalQuantity, double totalPrice, double rental, Date bookingDate, Date rentalStart, Date rentalEnd, String fullName, String address, String phone) {
         this.orderRentName = orderRentName;
         this.note = note;
+        this.rental = rental;
         this.bookingDate = bookingDate;
         this.rentalStart = rentalStart;
         this.rentalEnd = rentalEnd;
         this.status = status;
         this.totalQuantity = totalQuantity;
         this.totalPrice = totalPrice;
+        this.fullName= fullName;
+        this.address = address;
+        this.phone = phone;
     }
 
     public int getOrderRentID() {
@@ -192,5 +200,29 @@ public class OrderRent {
 
     public void setCombos(Set<Combo> combos) {
         this.combos = combos;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

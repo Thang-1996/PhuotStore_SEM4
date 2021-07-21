@@ -1,11 +1,10 @@
 package com.example.phuotstore.api;
 
 
+import com.example.phuotstore.dto.OrderDTO;
 import com.example.phuotstore.dto.OrderRentDTO;
-import com.example.phuotstore.model.Combo;
-import com.example.phuotstore.model.OrderRent;
-import com.example.phuotstore.model.Product;
-import com.example.phuotstore.model.User;
+import com.example.phuotstore.model.*;
+import com.example.phuotstore.payload.response.MessageResponse;
 import com.example.phuotstore.repository.ComboRepository;
 import com.example.phuotstore.repository.OrderRentRepository;
 import com.example.phuotstore.repository.ProductRepository;
@@ -15,8 +14,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
+import java.net.URI;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Optional;
@@ -75,6 +76,53 @@ public class OrderRentAPI {
 //        return ResponseEntity.ok(orderRentRepository.findPaginateOrderRentsCancelled(pageable));
 //    }
 
+    @PostMapping("/add")
+    public ResponseEntity<?> createOrderRent(@Valid @RequestBody OrderRentDTO orderRentDTO) {
+        if (comboRepository.existsByComboName(orderRentDTO.getOrderRentName())) {
+            return ResponseEntity
+                .badRequest()
+                .body(new MessageResponse("Error: Order Rent Name is already!"));
+        }
+
+        Optional<User> optionalUser = userRepository.findUserByID(orderRentDTO.getUserID());
+        if (!optionalUser.isPresent()) {
+            return ResponseEntity.unprocessableEntity().build();
+        }
+
+        OrderRent orderRent = new OrderRent(orderRentDTO.getOrderRentName(), orderRentDTO.getNote(), orderRentDTO.getStatus(), orderRentDTO.getTotalQuantity(), orderRentDTO.getTotalPrice(), orderRentDTO.getRental(), orderRentDTO.getBookingDate(), orderRentDTO.getRentalStart(), orderRentDTO.getRentalEnd(), orderRentDTO.getFullName(), orderRentDTO.getAddress(), orderRentDTO.getPhone());
+
+        Set<Integer> productID = orderRentDTO.getProduct();
+        Set<Integer> comboID = orderRentDTO.getCombo();
+
+        Set<Product> products = new HashSet<>();
+        Set<Combo> combos = new HashSet<>();
+        if (productID == null && comboID == null) {
+            return ResponseEntity.unprocessableEntity().build();
+        } else {
+            productID.forEach((product) -> {
+                Product productSaved = productRepository.findByID(product);
+                products.add(productSaved);
+            });
+            comboID.forEach((combo) -> {
+                Combo comboSaved = comboRepository.findByID(combo);
+                combos.add(comboSaved);
+            });
+
+            orderRent.setCreateAt(new Date());
+            orderRent.setProducts(products);
+            orderRent.setUser(optionalUser.get());
+            orderRent.setCombos(combos);
+            orderRentRepository.save(orderRent);
+
+            URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(orderRent.getOrderRentID())
+                .toUri();
+            return ResponseEntity.created(location).body(orderRent);
+        }
+    }
+
     @PutMapping("/update/{id}")
     public ResponseEntity<?> updateOrderRent(@PathVariable int id,
                                              @Valid @RequestBody OrderRentDTO orderRentDTO) {
@@ -84,11 +132,11 @@ public class OrderRentAPI {
             return ResponseEntity.unprocessableEntity().build();
         }
 
-        OrderRent orderRent = new OrderRent(orderRentDTO.getOrderRentName(), orderRentDTO.getNote(), orderRentDTO.getBookingDate(), orderRentDTO.getRentalStart(), orderRentDTO.getRentalEnd(), orderRentDTO.getStatus(), orderRentDTO.getTotalQuantity(), orderRentDTO.getTotalPrice());
+        OrderRent orderRent = new OrderRent(orderRentDTO.getOrderRentName(), orderRentDTO.getNote(), orderRentDTO.getStatus(), orderRentDTO.getTotalQuantity(), orderRentDTO.getTotalPrice(), orderRentDTO.getRental(), orderRentDTO.getBookingDate(), orderRentDTO.getRentalStart(), orderRentDTO.getRentalEnd(), orderRentDTO.getFullName(), orderRentDTO.getAddress(), orderRentDTO.getPhone());
 
         Set<Integer> productID = orderRentDTO.getProduct();
         Set<Integer> comboID = orderRentDTO.getCombo();
-        Set<Integer> userID = orderRentDTO.getUser();
+        Integer userID = orderRentDTO.getUserID();
 
         Set<Product> products = new HashSet<>();
         Set<Combo> combos = new HashSet<>();

@@ -17,6 +17,10 @@ public class OrderDTO {
 
     private double totalPrice;
 
+    private String fullName;
+    private String address;
+    private String phone;
+
     private Integer userID;
 
     private Set<Integer> product;
@@ -85,5 +89,29 @@ public class OrderDTO {
 
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

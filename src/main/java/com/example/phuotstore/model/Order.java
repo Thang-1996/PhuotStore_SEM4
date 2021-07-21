@@ -35,6 +35,10 @@ public class Order {
 
     private double totalPrice;
 
+    private String fullName;
+    private String address;
+    private String phone;
+
     @ManyToOne
     @JoinColumn(name = "userID", referencedColumnName = "userID")
     private User user;
@@ -54,12 +58,15 @@ public class Order {
     public Order() {
     }
 
-    public Order(String orderName, String note, String status, int totalQuantity, double totalPrice) {
+    public Order(String orderName, String note, String status, int totalQuantity, double totalPrice, String fullName, String address, String phone) {
         this.orderName = orderName;
         this.note = note;
         this.status = status;
         this.totalQuantity = totalQuantity;
         this.totalPrice = totalPrice;
+        this.fullName= fullName;
+        this.address = address;
+        this.phone = phone;
     }
 
     public int getOrderID() {
@@ -148,5 +155,37 @@ public class Order {
 
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    public int getTotalQuantity() {
+        return totalQuantity;
+    }
+
+    public void setTotalQuantity(int totalQuantity) {
+        this.totalQuantity = totalQuantity;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }
