@@ -20,12 +20,12 @@ public interface ShopRepository extends JpaRepository<Shop, Integer> {
     @Query("SELECT s FROM Shop s ")
     Page<Shop> getAllShops(Pageable pageable);
 
-//    @Query("SELECT s FROM Shop s WHERE s.status = 'SHOW' ")
-//    Page<Shop> findPaginateShopsStatusShow(Pageable pageable);
-//
-//    @Query("SELECT s FROM Brand s WHERE s.status = 'HIDDEN' ")
-//    Page<Shop> findPaginateShopsStatusHidden(Pageable pageable);
-//
-//    @Query("SELECT s FROM Shop s WHERE s.shopName = ?1")
-//    Shop findByShopName(String shopName);
+    @Query("SELECT s FROM Shop s WHERE s.status = 'SHOW' ")
+    Page<Shop> findPaginateShopsStatusShow(Pageable pageable);
+
+    @Query("SELECT s FROM Brand s WHERE s.status = 'HIDDEN' ")
+    Page<Shop> findPaginateShopsStatusHidden(Pageable pageable);
+
+    @Query("SELECT s FROM Shop s WHERE s.shopName = ?1")
+    Shop findByShopName(String shopName);
 }

@@ -51,30 +51,30 @@ public class OrderRentAPI {
         return ResponseEntity.ok(orderRentRepository.getOrderRentsByUserID(id, pageable));
     }
 
-//    @GetMapping("/status/waiting")
-//    public ResponseEntity<Page<OrderRent>> getOrderRentsByStatusWaiting(Pageable pageable) {
-//        return ResponseEntity.ok(orderRentRepository.findPaginateOrderRentsWaiting(pageable));
-//    }
-//
-//    @GetMapping("/status/confirmed")
-//    public ResponseEntity<Page<OrderRent>> getOrderRentsByStatusConfirmed(Pageable pageable) {
-//        return ResponseEntity.ok(orderRentRepository.findPaginateOrderRentsConfirmed(pageable));
-//    }
-//
-//    @GetMapping("/status/shipping")
-//    public ResponseEntity<Page<OrderRent>> getOrderRentByStatusShipping(Pageable pageable) {
-//        return ResponseEntity.ok(orderRentRepository.findPaginateOrderRentsShipping(pageable));
-//    }
-//
-//    @GetMapping("/status/complete")
-//    public ResponseEntity<Page<OrderRent>> getOrderRentsByStatusComplete(Pageable pageable) {
-//        return ResponseEntity.ok(orderRentRepository.findPaginateOrderRentsComplete(pageable));
-//    }
-//
-//    @GetMapping("/status/cancelled")
-//    public ResponseEntity<Page<OrderRent>> getOrderRentsByStatusCancelled(Pageable pageable) {
-//        return ResponseEntity.ok(orderRentRepository.findPaginateOrderRentsCancelled(pageable));
-//    }
+    @GetMapping("/waiting")
+    public ResponseEntity<Page<OrderRent>> getOrderRentsByStatusWaiting(Pageable pageable) {
+        return ResponseEntity.ok(orderRentRepository.findPaginateOrderRentsWaiting(pageable));
+    }
+
+    @GetMapping("/confirm")
+    public ResponseEntity<Page<OrderRent>> getOrderRentsByStatusConfirm(Pageable pageable) {
+        return ResponseEntity.ok(orderRentRepository.findPaginateOrderRentsConfirm(pageable));
+    }
+
+    @GetMapping("/shipping")
+    public ResponseEntity<Page<OrderRent>> getOrderRentByStatusShipping(Pageable pageable) {
+        return ResponseEntity.ok(orderRentRepository.findPaginateOrderRentsShipping(pageable));
+    }
+
+    @GetMapping("/done")
+    public ResponseEntity<Page<OrderRent>> getOrderRentsByStatusDone(Pageable pageable) {
+        return ResponseEntity.ok(orderRentRepository.findPaginateOrderRentsDone(pageable));
+    }
+
+    @GetMapping("/cancel")
+    public ResponseEntity<Page<OrderRent>> getOrderRentsByStatusCancel(Pageable pageable) {
+        return ResponseEntity.ok(orderRentRepository.findPaginateOrderRentsCancel(pageable));
+    }
 
     @PostMapping("/add")
     public ResponseEntity<?> createOrderRent(@Valid @RequestBody OrderRentDTO orderRentDTO) {

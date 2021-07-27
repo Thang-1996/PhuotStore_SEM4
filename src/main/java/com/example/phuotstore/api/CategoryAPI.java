@@ -37,15 +37,15 @@ public class CategoryAPI {
         return ResponseEntity.ok(optionalCategory.get());
     }
 
-//    @GetMapping("/hidden")
-//    public ResponseEntity<Page<Category>> getCategoriesByStatusHidden(Pageable pageable) {
-//        return ResponseEntity.ok(categoryRepository.findPaginateCategoriesStatusHidden(pageable));
-//    }
-//
-//    @GetMapping("/show")
-//    public ResponseEntity<Page<Category>> getCategoriesByStatusShow(Pageable pageable) {
-//        return ResponseEntity.ok(categoryRepository.findPaginateCategoriesStatusShow(pageable));
-//    }
+    @GetMapping("/hidden")
+    public ResponseEntity<Page<Category>> getCategoriesByStatusHidden(Pageable pageable) {
+        return ResponseEntity.ok(categoryRepository.findPaginateCategoriesStatusHidden(pageable));
+    }
+
+    @GetMapping("/show")
+    public ResponseEntity<Page<Category>> getCategoriesByStatusShow(Pageable pageable) {
+        return ResponseEntity.ok(categoryRepository.findPaginateCategoriesStatusShow(pageable));
+    }
 
     @PostMapping("/add")
     public ResponseEntity<?> createCategory(@Valid @RequestBody Category category) {

@@ -20,8 +20,6 @@ public class Order {
     @NotNull(message = "Order Name must not be null")
     private String orderName;
 
-
-
     @CreationTimestamp
     private Date createAt;
 

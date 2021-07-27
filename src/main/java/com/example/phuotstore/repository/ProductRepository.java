@@ -29,9 +29,9 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     @Query("SELECT p FROM Product p")
     Page<Product> getAllProducts(Pageable pageable);
 
-//    @Query("SELECT p FROM Product p WHERE p.status = 'SHOW' ")
-//    Page<Product> findPaginateProductsStatusShow(Pageable pageable);
-//
-//    @Query("SELECT p FROM Product p WHERE p.status = 'HIDDEN' ")
-//    Page<Product> findPaginateProductsStatusHidden(Pageable pageable);
+    @Query("SELECT p FROM Product p WHERE p.status = 'SHOW' ")
+    Page<Product> findPaginateProductsStatusShow(Pageable pageable);
+
+    @Query("SELECT p FROM Product p WHERE p.status = 'HIDDEN' ")
+    Page<Product> findPaginateProductsStatusHidden(Pageable pageable);
 }

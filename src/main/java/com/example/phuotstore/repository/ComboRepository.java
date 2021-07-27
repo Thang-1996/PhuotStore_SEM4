@@ -23,10 +23,10 @@ public interface ComboRepository extends JpaRepository<Combo, Integer> {
     @Query("SELECT cb FROM Combo cb")
     Page<Combo> getAllCombos(Pageable pageable);
 
-//    @Query("SELECT cb FROM Combo cb WHERE cb.status = 'SHOW' ")
-//    Page<Combo> findPaginateCombosStatusShow(Pageable pageable);
-//
-//    @Query("SELECT cb FROM Combo cb WHERE cb.status = 'HIDDEN' ")
-//    Page<Combo> findPaginateCombosStatusHidden(Pageable pageable);
+    @Query("SELECT cb FROM Combo cb WHERE cb.status = 'SHOW' ")
+    Page<Combo> findPaginateCombosStatusShow(Pageable pageable);
+
+    @Query("SELECT cb FROM Combo cb WHERE cb.status = 'HIDDEN' ")
+    Page<Combo> findPaginateCombosStatusHidden(Pageable pageable);
 
 }

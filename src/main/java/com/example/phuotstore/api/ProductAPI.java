@@ -68,15 +68,15 @@ public class ProductAPI {
         return ResponseEntity.ok(productRepository.findProductsByCategoryID(id, pageable));
     }
 
-//    @GetMapping("/hidden")
-//    public ResponseEntity<Page<Product>> getProductsByStatusHidden(Pageable pageable) {
-//        return ResponseEntity.ok(productRepository.findPaginateProductsStatusHidden(pageable));
-//    }
-//
-//    @GetMapping("/show")
-//    public ResponseEntity<Page<Product>> getProductsByStatusShow(Pageable pageable) {
-//        return ResponseEntity.ok(productRepository.findPaginateProductsStatusShow(pageable));
-//    }
+    @GetMapping("/hidden")
+    public ResponseEntity<Page<Product>> getProductsByStatusHidden(Pageable pageable) {
+        return ResponseEntity.ok(productRepository.findPaginateProductsStatusHidden(pageable));
+    }
+
+    @GetMapping("/show")
+    public ResponseEntity<Page<Product>> getProductsByStatusShow(Pageable pageable) {
+        return ResponseEntity.ok(productRepository.findPaginateProductsStatusShow(pageable));
+    }
 
     @PostMapping("/add")
     public ResponseEntity<?> createProduct(@Valid @RequestBody ProductDTO productDTO) {

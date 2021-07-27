@@ -19,9 +19,9 @@ public interface ImageRepository extends JpaRepository<Image, Integer> {
     @Query("SELECT img FROM Image img")
     Page<Image> getAllImages(Pageable pageable);
 
-//    @Query("SELECT img FROM Image img WHERE img.status = 'SHOW' ")
-//    Page<Image> findPaginateImagesStatusShow(Pageable pageable);
-//
-//    @Query("SELECT img FROM Image img WHERE img.status = 'HIDDEN' ")
-//    Page<Image> findPaginateImagesStatusHidden(Pageable pageable);
+    @Query("SELECT img FROM Image img WHERE img.status = 'SHOW' ")
+    Page<Image> findPaginateImagesStatusShow(Pageable pageable);
+
+    @Query("SELECT img FROM Image img WHERE img.status = 'HIDDEN' ")
+    Page<Image> findPaginateImagesStatusHidden(Pageable pageable);
 }

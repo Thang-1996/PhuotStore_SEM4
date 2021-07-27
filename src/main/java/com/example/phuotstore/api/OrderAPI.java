@@ -59,30 +59,30 @@ public class OrderAPI {
         return ResponseEntity.ok(orderRepository.getOrdersByUserID(id, pageable));
     }
 
-//    @GetMapping("/status/waiting")
-//    public ResponseEntity<Page<Order>> getOrdersByStatusWaiting(Pageable pageable) {
-//        return ResponseEntity.ok(orderRepository.findPaginateOrderWaiting(pageable));
-//    }
-//
-//    @GetMapping("/status/confirmed")
-//    public ResponseEntity<Page<Order>> getOrdersByStatusConfirmed(Pageable pageable) {
-//        return ResponseEntity.ok(orderRepository.findPaginateOrderConfirmed(pageable));
-//    }
-//
-//    @GetMapping("/status/shipping")
-//    public ResponseEntity<Page<Order>> getOrdersByStatusShipping(Pageable pageable) {
-//        return ResponseEntity.ok(orderRepository.findPaginateOrderShipping(pageable));
-//    }
-//
-//    @GetMapping("/status/complete")
-//    public ResponseEntity<Page<Order>> getOrdersByStatusComplete(Pageable pageable) {
-//        return ResponseEntity.ok(orderRepository.findPaginateOrderComplete(pageable));
-//    }
-//
-//    @GetMapping("/status/cancelled")
-//    public ResponseEntity<Page<Order>> getOrdersByStatusCancelled(Pageable pageable) {
-//        return ResponseEntity.ok(orderRepository.findPaginateOrderCancelled(pageable));
-//    }
+    @GetMapping("/waiting")
+    public ResponseEntity<Page<Order>> getOrdersByStatusWaiting(Pageable pageable) {
+        return ResponseEntity.ok(orderRepository.findPaginateOrderWaiting(pageable));
+    }
+
+    @GetMapping("/confirm")
+    public ResponseEntity<Page<Order>> getOrdersByStatusConfirm(Pageable pageable) {
+        return ResponseEntity.ok(orderRepository.findPaginateOrderConfirm(pageable));
+    }
+
+    @GetMapping("/shipping")
+    public ResponseEntity<Page<Order>> getOrdersByStatusShipping(Pageable pageable) {
+        return ResponseEntity.ok(orderRepository.findPaginateOrderShipping(pageable));
+    }
+
+    @GetMapping("/done")
+    public ResponseEntity<Page<Order>> getOrdersByStatusDone(Pageable pageable) {
+        return ResponseEntity.ok(orderRepository.findPaginateOrderDone(pageable));
+    }
+
+    @GetMapping("/cancel")
+    public ResponseEntity<Page<Order>> getOrdersByStatusCancel(Pageable pageable) {
+        return ResponseEntity.ok(orderRepository.findPaginateOrderCancel(pageable));
+    }
 
     @PostMapping("/add")
     public ResponseEntity<?> createOrder(@Valid @RequestBody OrderDTO orderDTO) {

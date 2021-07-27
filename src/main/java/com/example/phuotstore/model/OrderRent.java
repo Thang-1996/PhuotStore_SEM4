@@ -50,7 +50,6 @@ public class OrderRent {
     private String shippingAddress;
     private String phone;
 
-
     @ManyToOne
     @NotNull
     @JoinColumn(name = "userID", referencedColumnName = "userID")

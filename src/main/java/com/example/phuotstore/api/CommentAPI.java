@@ -45,13 +45,15 @@ public class CommentAPI {
         return ResponseEntity.ok(optionalComment.get());
     }
 
-//    @GetMapping("/hidden")
-//    public ResponseEntity<Page<Comment>> getCommentsByStatusHidden(Pageable pageable) {
-//        return ResponseEntity.ok(commentRepository.findPaginateCommentsStatusHidden(pageable));
-//    }
-//
-//    @GetMapping("/show")
-//    public ResponseEntity<Page<Comment>> getCommentsByStatusShow(Pageable pageable) {
-//        return ResponseEntity.ok(commentRepository.findPaginateCommentsStatusShow(pageable));
-//    }
+    @GetMapping("/hidden")
+    public ResponseEntity<Page<Comment>> getCommentsByStatusHidden(Pageable pageable) {
+        return ResponseEntity.ok(commentRepository.findPaginateCommentsStatusHidden(pageable));
+    }
+
+    @GetMapping("/show")
+    public ResponseEntity<Page<Comment>> getCommentsByStatusShow(Pageable pageable) {
+        return ResponseEntity.ok(commentRepository.findPaginateCommentsStatusShow(pageable));
+    }
+
+
 }

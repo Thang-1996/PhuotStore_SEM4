@@ -20,9 +20,9 @@ public interface BrandRepository extends JpaRepository<Brand, Integer> {
     @Query("SELECT br FROM Brand br")
     Page<Brand> getAllBrands(Pageable pageable);
 
-//    @Query("SELECT br FROM Brand br WHERE br.status = 'SHOW' ")
-//    Page<Brand> findPaginateBrandsStatusShow(Pageable pageable);
-//
-//    @Query("SELECT br FROM Brand br WHERE br.status = 'HIDDEN' ")
-//    Page<Brand> findPaginateBrandsStatusHidden(Pageable pageable);
+    @Query("SELECT br FROM Brand br WHERE br.status = 'SHOW' ")
+    Page<Brand> findPaginateBrandsStatusShow(Pageable pageable);
+
+    @Query("SELECT br FROM Brand br WHERE br.status = 'HIDDEN' ")
+    Page<Brand> findPaginateBrandsStatusHidden(Pageable pageable);
 }

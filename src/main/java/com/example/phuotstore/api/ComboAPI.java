@@ -44,15 +44,15 @@ public class ComboAPI {
         return ResponseEntity.ok(optionalCombo.get());
     }
 
-//    @GetMapping("/hidden")
-//    public ResponseEntity<Page<Combo>> getCombosByStatusHidden(Pageable pageable) {
-//        return ResponseEntity.ok(comboRepository.findPaginateCombosStatu sHidden(pageable));
-//    }
-//
-//    @GetMapping("/show")
-//    public ResponseEntity<Page<Combo>> getCombosByStatusShow(Pageable pageable) {
-//        return ResponseEntity.ok(comboRepository.findPaginateCombosStatusShow(pageable));
-//    }
+    @GetMapping("/hidden")
+    public ResponseEntity<Page<Combo>> getCombosByStatusHidden(Pageable pageable) {
+        return ResponseEntity.ok(comboRepository.findPaginateCombosStatusHidden(pageable));
+    }
+
+    @GetMapping("/show")
+    public ResponseEntity<Page<Combo>> getCombosByStatusShow(Pageable pageable) {
+        return ResponseEntity.ok(comboRepository.findPaginateCombosStatusShow(pageable));
+    }
 
     @PostMapping("/add")
     public ResponseEntity<?> createCombo(@Valid @RequestBody ComboDTO comboDTO) {

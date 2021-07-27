@@ -25,4 +25,6 @@ public interface InventoryRepository extends JpaRepository<Inventory, Integer> {
     @Query("SELECT i FROM Inventory i")
     Page<Inventory> getAllInventories(Pageable pageable);
 
+
+
 }
