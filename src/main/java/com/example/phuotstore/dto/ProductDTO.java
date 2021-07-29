@@ -1,5 +1,6 @@
 package com.example.phuotstore.dto;
 
+import javax.persistence.Column;
 import javax.validation.constraints.NotNull;
 import java.util.Set;
 
@@ -23,11 +24,14 @@ public class ProductDTO {
     private double price;
     private int rating;
 
+    @Column(columnDefinition="TEXT")
+    private String images;
+
+
     @NotNull(message = "Status must not be null")
     private String status;
     private int categoryID;
     private int brandID;
-    private Set<Integer> images;
     private Set<Integer> comments;
 
     public String getProductName() {
@@ -110,11 +114,11 @@ public class ProductDTO {
         this.brandID = brandID;
     }
 
-    public Set<Integer> getImages() {
+    public String getImages() {
         return images;
     }
 
-    public void setImages(Set<Integer> images) {
+    public void setImages(String images) {
         this.images = images;
     }
 

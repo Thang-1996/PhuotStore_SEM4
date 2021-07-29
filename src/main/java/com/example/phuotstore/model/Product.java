@@ -43,6 +43,9 @@ public class Product {
 
     private int rating;
 
+    @Column(columnDefinition="TEXT")
+    private String images;
+
     @ManyToOne
     @JoinColumn(name = "categoryID", referencedColumnName = "categoryID")
     private Category category;
@@ -52,18 +55,16 @@ public class Product {
     private Brand brand;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-    private Set<Image> images = new HashSet<>();
-
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private Set<Comment> comments = new HashSet<>();
 
 
     public Product() {
     }
 
-    public Product(String productName, String productCode, String productDesc, int discount, String status, int qty, double price, int rating) {
+    public Product(String productName, String productCode, String productDesc, String images, int discount, String status, int qty, double price, int rating) {
         this.productName = productName;
         this.productCode = productCode;
+        this.images = images;
         this.productDesc = productDesc;
         this.discount = discount;
         this.status = status;
@@ -185,11 +186,11 @@ public class Product {
         this.comments = comments;
     }
 
-    public Set<Image> getImages() {
+    public String getImages() {
         return images;
     }
 
-    public void setImages(Set<Image> images) {
+    public void setImages(String images) {
         this.images = images;
     }
 }

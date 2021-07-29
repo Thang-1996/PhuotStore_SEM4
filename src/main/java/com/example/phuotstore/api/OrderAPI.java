@@ -59,6 +59,15 @@ public class OrderAPI {
         return ResponseEntity.ok(orderRepository.getOrdersByUserID(id, pageable));
     }
 
+    @GetMapping("/paynow")
+    public ResponseEntity<Page<Order>> getOrdersByPayNow(Pageable pageable) {
+        return ResponseEntity.ok(orderRepository.findPaginateOrderPayNow(pageable));
+    }
+    @GetMapping("/online")
+    public ResponseEntity<Page<Order>> getOrdersByOnline(Pageable pageable) {
+        return ResponseEntity.ok(orderRepository.findPaginateOrderOnline(pageable));
+    }
+
     @GetMapping("/waiting")
     public ResponseEntity<Page<Order>> getOrdersByStatusWaiting(Pageable pageable) {
         return ResponseEntity.ok(orderRepository.findPaginateOrderWaiting(pageable));

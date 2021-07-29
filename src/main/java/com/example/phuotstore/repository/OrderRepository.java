@@ -19,6 +19,12 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
     @Query("SELECT od FROM Order od WHERE od.user.userID = ?1")
     Page<Order> getOrdersByUserID(int userID, Pageable pageable);
 
+    @Query("SELECT od FROM Order od WHERE od.paymentType = 'PAYNOW'")
+    Page<Order> findPaginateOrderPayNow(Pageable pageable);
+
+    @Query("SELECT od FROM Order od WHERE od.paymentType = 'ONLINE'")
+    Page<Order> findPaginateOrderOnline(Pageable pageable);
+
     @Query("SELECT od FROM Order od WHERE od.status = 'WAITING' ORDER BY od.createAt ASC ")
     Page<Order> findPaginateOrderWaiting(Pageable pageable);
 

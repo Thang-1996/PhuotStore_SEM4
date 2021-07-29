@@ -19,6 +19,13 @@ public interface OrderRentRepository extends JpaRepository<OrderRent, Integer> {
     @Query("SELECT od FROM OrderRent od WHERE od.user.userID = ?1")
     Page<OrderRent> getOrderRentsByUserID(int userID, Pageable pageable);
 
+    @Query("SELECT od FROM OrderRent od WHERE od.paymentType = 'PAYNOW' ORDER BY od.createAt ASC ")
+    Page<OrderRent> findPaginateOrderRentsPayNow(Pageable pageable);
+
+    @Query("SELECT od FROM OrderRent od WHERE od.paymentType = 'ONLINE' ORDER BY od.createAt ASC ")
+    Page<OrderRent> findPaginateOrderRentsOnline(Pageable pageable);
+
+
     @Query("SELECT od FROM OrderRent od WHERE od.status = 'WAITING' ORDER BY od.createAt ASC ")
     Page<OrderRent> findPaginateOrderRentsWaiting(Pageable pageable);
 
