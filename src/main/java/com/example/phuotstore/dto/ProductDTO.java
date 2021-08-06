@@ -22,7 +22,6 @@ public class ProductDTO {
 
     @NotNull(message = "Price must not be null")
     private double price;
-    @NotNull(message = "Rental must not be null")
     private double rental;
     private int rating;
 

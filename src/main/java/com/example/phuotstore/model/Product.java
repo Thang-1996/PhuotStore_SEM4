@@ -36,7 +36,6 @@ public class Product {
     @NotNull(message = "Price must not be null")
     private double price;
 
-    @NotNull(message = "Price must not be null")
     private double rental;
 
     @CreationTimestamp
