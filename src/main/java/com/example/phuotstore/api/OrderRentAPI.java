@@ -180,6 +180,7 @@ public class OrderRentAPI {
             orderRent.setCombos(combos);
             orderRent.setUpdateAt(new Date());
             orderRent.setOrderRentID(optionalOrderRent.get().getOrderRentID());
+            orderRent.setUser(optionalUser.get());
             orderRentRepository.save(orderRent);
             return ResponseEntity.ok(optionalOrderRent.get());
         }
