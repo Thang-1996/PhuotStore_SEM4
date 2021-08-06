@@ -104,7 +104,7 @@ public class ProductAPI {
         }
 
 
-        Product product = new Product(productDTO.getProductName(), productDTO.getProductCode(), productDTO.getProductDesc(), productDTO.getImages(), productDTO.getDiscount(), productDTO.getStatus(), productDTO.getQty(), productDTO.getPrice(), productDTO.getRating());
+        Product product = new Product(productDTO.getProductName(), productDTO.getProductCode(), productDTO.getProductDesc(), productDTO.getImages(), productDTO.getDiscount(), productDTO.getStatus(), productDTO.getQty(), productDTO.getPrice(), productDTO.getRental(), productDTO.getRating());
         product.setCreateAt(new Date());
         product.setBrand(optionalBrand.get());
         product.setCategory(optionalCategory.get());
@@ -121,7 +121,7 @@ public class ProductAPI {
     public ResponseEntity<?> updateProduct(@PathVariable int id, @Valid @RequestBody ProductDTO productDTO) {
 
 
-        Product product = new Product(productDTO.getProductName(), productDTO.getProductCode(), productDTO.getProductDesc(), productDTO.getImages(), productDTO.getDiscount(), productDTO.getStatus(), productDTO.getQty(), productDTO.getPrice(), productDTO.getRating());
+        Product product = new Product(productDTO.getProductName(), productDTO.getProductCode(), productDTO.getProductDesc(), productDTO.getImages(), productDTO.getDiscount(), productDTO.getStatus(), productDTO.getQty(), productDTO.getPrice(), productDTO.getRental(), productDTO.getRating());
 
         Optional<Brand> optionalBrand = brandRepository.findBrandByID(productDTO.getBrandID());
         if (!optionalBrand.isPresent()) {
@@ -137,7 +137,7 @@ public class ProductAPI {
         if (!optionalProduct.isPresent()) {
             return ResponseEntity.unprocessableEntity().build();
         }
-        
+
         product.setProductID(optionalProduct.get().getProductID());
         product.setCreateAt(optionalProduct.get().getCreateAt());
         product.setUpdateAt(new Date());

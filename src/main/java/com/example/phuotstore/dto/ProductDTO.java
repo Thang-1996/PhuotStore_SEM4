@@ -22,6 +22,8 @@ public class ProductDTO {
 
     @NotNull(message = "Price must not be null")
     private double price;
+    @NotNull(message = "Rental must not be null")
+    private double rental;
     private int rating;
 
     @Column(columnDefinition="TEXT")
@@ -128,6 +130,14 @@ public class ProductDTO {
 
     public void setComments(Set<Integer> comments) {
         this.comments = comments;
+    }
+
+    public double getRental() {
+        return rental;
+    }
+
+    public void setRental(double rental) {
+        this.rental = rental;
     }
 }
 

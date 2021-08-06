@@ -36,6 +36,9 @@ public class Product {
     @NotNull(message = "Price must not be null")
     private double price;
 
+    @NotNull(message = "Price must not be null")
+    private double rental;
+
     @CreationTimestamp
     private Date createAt;
     @CreationTimestamp
@@ -57,11 +60,10 @@ public class Product {
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private Set<Comment> comments = new HashSet<>();
 
-
     public Product() {
     }
 
-    public Product(String productName, String productCode, String productDesc, String images, int discount, String status, int qty, double price, int rating) {
+    public Product(String productName, String productCode, String productDesc, String images, int discount, String status, int qty, double price, double rental, int rating) {
         this.productName = productName;
         this.productCode = productCode;
         this.images = images;
@@ -70,6 +72,7 @@ public class Product {
         this.status = status;
         this.qty = qty;
         this.price = price;
+        this.rental = rental;
         this.rating = rating;
     }
 
@@ -120,6 +123,14 @@ public class Product {
 
     public void setProductDesc(String productDesc) {
         this.productDesc = productDesc;
+    }
+
+    public double getRental() {
+        return rental;
+    }
+
+    public void setRental(double rental) {
+        this.rental = rental;
     }
 
     public String getStatus() {

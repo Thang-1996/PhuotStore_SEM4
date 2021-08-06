@@ -19,7 +19,7 @@ public class OrderRentDTO {
 
     private double totalPrice;
 
-    private double rental;
+    private double totalRental;
 
     @CreationTimestamp
     private Date bookingDate;
@@ -84,12 +84,12 @@ public class OrderRentDTO {
         this.totalPrice = totalPrice;
     }
 
-    public double getRental() {
-        return rental;
+    public double getTotalRental() {
+        return totalRental;
     }
 
-    public void setRental(double rental) {
-        this.rental = rental;
+    public void setTotalRental(double totalRental) {
+        this.totalRental = totalRental;
     }
 
     public Integer getUserID() {

@@ -41,7 +41,7 @@ public class OrderRent {
 
     private double totalPrice;
 
-    private double rental;
+    private double totalRental;
 
     private String paymentType;
     private String firstName;
@@ -70,10 +70,10 @@ public class OrderRent {
     public OrderRent() {
     }
 
-    public OrderRent(@NotNull String orderRentName, String note, String status,int totalQuantity, double totalPrice, double rental, Date bookingDate, Date rentalStart, Date rentalEnd,  String firstName, String lastName, String email, String shippingAddress, String phone, String paymentType) {
+    public OrderRent(@NotNull String orderRentName, String note, String status,int totalQuantity, double totalPrice, double totalRental, Date bookingDate, Date rentalStart, Date rentalEnd,  String firstName, String lastName, String email, String shippingAddress, String phone, String paymentType) {
         this.orderRentName = orderRentName;
         this.note = note;
-        this.rental = rental;
+        this.totalRental = totalRental;
         this.bookingDate = bookingDate;
         this.rentalStart = rentalStart;
         this.rentalEnd = rentalEnd;
@@ -176,12 +176,20 @@ public class OrderRent {
         this.totalPrice = totalPrice;
     }
 
-    public double getRental() {
-        return rental;
+    public double getTotalRental() {
+        return totalRental;
     }
 
-    public void setRental(double rental) {
-        this.rental = rental;
+    public void setTotalRental(double totalRental) {
+        this.totalRental = totalRental;
+    }
+
+    public String getPaymentType() {
+        return paymentType;
+    }
+
+    public void setPaymentType(String paymentType) {
+        this.paymentType = paymentType;
     }
 
     public User getUser() {
