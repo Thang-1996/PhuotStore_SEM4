@@ -50,6 +50,14 @@ public class OrderRentAPI {
         }
         return ResponseEntity.ok(orderRentRepository.getOrderRentsByUserID(id, pageable));
     }
+      @GetMapping("/{id}")
+    public ResponseEntity<OrderRent> getOrderRentByID(@PathVariable int id) {
+        Optional<OrderRent> optionalOrderRent = orderRentRepository.findOrderRentByID(id);
+        if (!optionalOrderRent.isPresent()) {
+            return ResponseEntity.unprocessableEntity().build();
+        }
+        return ResponseEntity.ok(optionalOrderRent.get());
+    }
 
     @GetMapping("/paynow")
     public ResponseEntity<Page<OrderRent>> getOrderRentsByPayNow(Pageable pageable) {
