@@ -20,6 +20,7 @@ public class OrderRentDTO {
     private double totalPrice;
 
     private double totalRental;
+    private double deposits;
 
     @CreationTimestamp
     private Date bookingDate;
@@ -186,5 +187,13 @@ public class OrderRentDTO {
 
     public void setPaymentType(String paymentType) {
         this.paymentType = paymentType;
+    }
+
+    public double getDeposits() {
+        return deposits;
+    }
+
+    public void setDeposits(double deposits) {
+        this.deposits = deposits;
     }
 }

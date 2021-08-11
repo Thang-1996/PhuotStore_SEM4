@@ -40,6 +40,7 @@ public class OrderRent {
     private int totalQuantity;
 
     private double totalPrice;
+    private double deposits;
 
     private double totalRental;
 
@@ -70,7 +71,7 @@ public class OrderRent {
     public OrderRent() {
     }
 
-    public OrderRent(@NotNull String orderRentName, String note, String status,int totalQuantity, double totalPrice, double totalRental, Date bookingDate, Date rentalStart, Date rentalEnd,  String firstName, String lastName, String email, String shippingAddress, String phone, String paymentType) {
+    public OrderRent(@NotNull String orderRentName, String note, String status,int totalQuantity, double totalPrice, double totalRental,double deposits, Date bookingDate, Date rentalStart, Date rentalEnd,  String firstName, String lastName, String email, String shippingAddress, String phone, String paymentType) {
         this.orderRentName = orderRentName;
         this.note = note;
         this.totalRental = totalRental;
@@ -80,6 +81,7 @@ public class OrderRent {
         this.status = status;
         this.totalQuantity = totalQuantity;
         this.totalPrice = totalPrice;
+        this.deposits = deposits;
         this.firstName= firstName;
         this.lastName= lastName;
         this.email= email;
@@ -254,5 +256,13 @@ public class OrderRent {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public double getDeposits() {
+        return deposits;
+    }
+
+    public void setDeposits(double deposits) {
+        this.deposits = deposits;
     }
 }
