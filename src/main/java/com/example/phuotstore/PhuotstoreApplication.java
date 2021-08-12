@@ -91,9 +91,11 @@ public class PhuotstoreApplication implements CommandLineRunner {
 
         roleRepository.saveAll(Arrays.asList(adminRole, managerRole, userRole));
 
-        User userAdmin = new User("rootadmin",
-            "rootadmin@gmail.com",
-            encoder.encode("12345678"));
+        User userAdmin = new User();
+        userAdmin.setUserID(1);
+        userAdmin.setUsername("rootadmin");
+        userAdmin.setEmail("rootadmin@gmail.com");
+        userAdmin.setPassword(encoder.encode("12345678"));
 
         userAdmin.getRoles().add(adminRole);
 
