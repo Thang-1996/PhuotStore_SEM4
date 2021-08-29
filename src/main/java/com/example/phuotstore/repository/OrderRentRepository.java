@@ -29,7 +29,7 @@ public interface OrderRentRepository extends JpaRepository<OrderRent, Integer> {
     @Query("SELECT od FROM OrderRent od WHERE od.status = 'WAITING' ORDER BY od.createAt ASC ")
     Page<OrderRent> findPaginateOrderRentsWaiting(Pageable pageable);
 
-    @Query("SELECT od FROM OrderRent od WHERE od.status = 'COMFIRM' ORDER BY od.createAt ASC ")
+    @Query("SELECT od FROM OrderRent od WHERE od.status = 'CONFIRM' ORDER BY od.createAt ASC ")
     Page<OrderRent> findPaginateOrderRentsConfirm(Pageable pageable);
 
     @Query("SELECT od FROM OrderRent od WHERE od.status = 'SHIPPING' ORDER BY od.updateAt ASC ")
