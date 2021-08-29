@@ -83,6 +83,16 @@ public class OrderRentAPI {
     public ResponseEntity<Page<OrderRent>> getOrderRentByStatusShipping(Pageable pageable) {
         return ResponseEntity.ok(orderRentRepository.findPaginateOrderRentsShipping(pageable));
     }
+    
+    @GetMapping("/extend")
+    public ResponseEntity<Page<OrderRent>> getOrderRentsByStatusExtend(Pageable pageable) {
+        return ResponseEntity.ok(orderRentRepository.findPaginateOrderRentsExtend(pageable));
+    }
+
+    @GetMapping("/expired")
+    public ResponseEntity<Page<OrderRent>> getOrderRentsByStatusExpired(Pageable pageable) {
+        return ResponseEntity.ok(orderRentRepository.findPaginateOrderRentsExpired(pageable));
+    }
 
     @GetMapping("/done")
     public ResponseEntity<Page<OrderRent>> getOrderRentsByStatusDone(Pageable pageable) {
