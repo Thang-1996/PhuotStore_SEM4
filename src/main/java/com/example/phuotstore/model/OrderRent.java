@@ -25,13 +25,10 @@ public class OrderRent {
     @CreationTimestamp
     private Date updateAt;
 
-    @CreationTimestamp
-    private Date bookingDate;
+    private int bookingDate;
 
-    @CreationTimestamp
     private Date rentalStart;
 
-    @CreationTimestamp
     private Date rentalEnd;
 
     @NotNull(message = "Status must not be null")
@@ -71,7 +68,7 @@ public class OrderRent {
     public OrderRent() {
     }
 
-    public OrderRent(@NotNull String orderRentName, String note, String status,int totalQuantity, double totalPrice, double totalRental,double deposits, Date bookingDate, Date rentalStart, Date rentalEnd,  String firstName, String lastName, String email, String shippingAddress, String phone, String paymentType) {
+    public OrderRent(@NotNull String orderRentName, String note, String status,int totalQuantity, double totalPrice, double totalRental,double deposits, int bookingDate, Date rentalStart, Date rentalEnd,  String firstName, String lastName, String email, String shippingAddress, String phone, String paymentType) {
         this.orderRentName = orderRentName;
         this.note = note;
         this.totalRental = totalRental;
@@ -130,11 +127,11 @@ public class OrderRent {
         this.updateAt = updateAt;
     }
 
-    public Date getBookingDate() {
+    public int getBookingDate() {
         return bookingDate;
     }
 
-    public void setBookingDate(Date bookingDate) {
+    public void setBookingDate(int bookingDate) {
         this.bookingDate = bookingDate;
     }
 
