@@ -22,13 +22,11 @@ public class OrderRentDTO {
     private double totalRental;
     private double deposits;
 
-    @CreationTimestamp
-    private Date bookingDate;
+    private int bookingDate;
 
-    @CreationTimestamp
+
     private Date rentalStart;
 
-    @CreationTimestamp
     private Date rentalEnd;
 
     private String firstName;
@@ -133,11 +131,11 @@ public class OrderRentDTO {
         this.rentalEnd = rentalEnd;
     }
 
-    public Date getBookingDate() {
+    public int getBookingDate() {
         return bookingDate;
     }
 
-    public void setBookingDate(Date bookingDate) {
+    public void setBookingDate(int bookingDate) {
         this.bookingDate = bookingDate;
     }
 
